@@ -25,8 +25,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { useAuth } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 export function SessionRevokeForm({ sessionId }: { sessionId: string }) {
+  const router = useRouter();
   const { isSignedIn } = useAuth();
   const [showRevokeDialog, setShowRevokeDialog] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -38,6 +40,7 @@ export function SessionRevokeForm({ sessionId }: { sessionId: string }) {
       try {
         await revokeSession(sessionId);
         toast.success("Session revoked successfully.");
+        router.refresh();
       } catch (err) {
         console.error(err);
         toast.error("Failed to revoke session.");

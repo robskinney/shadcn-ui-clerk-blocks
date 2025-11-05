@@ -70,7 +70,7 @@ function UserDropdown1Inner({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          className="flex flex-row w-20 h-11 items-center justify-between rounded-3xl py-1.5 px-3 gap-1 transition-all hover:shadow-md duration-100 cursor-pointer"
+          className="flex flex-row w-20 h-11 items-center justify-between rounded-3xl py-1.5 px-3 gap-1 transition-all hover:shadow-md duration-100"
           variant="outline"
         >
           <div className="w-1/2">

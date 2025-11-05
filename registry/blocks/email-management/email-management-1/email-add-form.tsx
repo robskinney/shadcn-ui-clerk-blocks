@@ -56,10 +56,10 @@ export function EmailAddForm() {
       try {
         await createEmailAddress(data);
         setShowAddDialog(false);
-        toast.success("Email created successfully");
+        toast.success("Email created successfully.");
       } catch (err) {
         console.error(err);
-        toast.error("Failed to create email");
+        toast.error("Failed to create email.");
       } finally {
         setLoading(false);
       }

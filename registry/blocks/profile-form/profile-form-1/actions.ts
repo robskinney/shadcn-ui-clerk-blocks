@@ -13,6 +13,7 @@ export async function updateUserProfile(data: UserProfileUpdateFormValues) {
   const client = await clerkClient();
 
   await client.users.updateUser(userId, {
+    username: data.username,
     firstName: data.firstName,
     lastName: data.lastName,
   });

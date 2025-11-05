@@ -24,6 +24,13 @@ import {
 } from "@/components/ui/field";
 import { updateUserProfile } from "./actions";
 import { Spinner } from "@/components/ui/spinner";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/components/ui/input-group";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 
 type ProfileForm1Props = {
   user?: Partial<UserResource> | Partial<User> | null;
@@ -44,6 +51,7 @@ const userProfileUpdateFormSchema = z.object({
     .max(MAX_FILE_SIZE, "Image must be less than 5MB.")
     .mime(ACCEPTED_IMAGE_TYPES, "Image must be .jpeg, .jpg, .png, or .webp.")
     .optional(),
+  username: z.string().optional(),
   firstName: z.string(),
   lastName: z.string(),
 });
@@ -87,6 +95,7 @@ function ProfileForm1Inner({
     resolver: zodResolver(userProfileUpdateFormSchema),
     defaultValues: {
       picture: undefined,
+      username: user.username ?? "",
       firstName: user.firstName ?? "",
       lastName: user.lastName ?? "",
     },
@@ -111,10 +120,10 @@ function ProfileForm1Inner({
         }
 
         await updateUserProfile(processedData);
-        toast.success("Profile updated successfully");
+        toast.success("Profile updated successfully.");
       } catch (err) {
         console.error(err);
-        toast.error("Failed to update profile");
+        toast.error("Failed to update profile.");
       } finally {
         setLoading(false);
       }
@@ -142,7 +151,8 @@ function ProfileForm1Inner({
               />
               <AvatarFallback className="outline-1 outline-primary bg-linear-to-tr from-pink-300 to-primary/75" />
             </Avatar>
-            <div className="gap-2">
+
+            <div>
               <Controller
                 name="picture"
                 control={form.control}
@@ -194,49 +204,77 @@ function ProfileForm1Inner({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="flex flex-col gap-3">
             <Controller
-              name="firstName"
+              name="username"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid} className="gap-1">
-                  <FieldLabel htmlFor="form-profile-update-1-firstName">
-                    First Name
+                  <FieldLabel htmlFor="form-profile-update-1-username">
+                    Username
                   </FieldLabel>
-                  <Input
-                    {...field}
-                    id="form-profile-update-1-firstName"
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Robert"
-                    autoComplete="given-name"
-                  />
+                  <InputGroup>
+                    <InputGroupInput
+                      {...field}
+                      id="form-profile-update-1-username"
+                      aria-invalid={fieldState.invalid}
+                      placeholder="robskinney"
+                      autoComplete="username"
+                    />
+                    <InputGroupAddon>
+                      <Label htmlFor="email">@</Label>
+                    </InputGroupAddon>
+                  </InputGroup>
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
                   )}
                 </Field>
               )}
             />
-            <Controller
-              name="lastName"
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid} className="gap-1">
-                  <FieldLabel htmlFor="form-profile-update-1-lastName">
-                    Last Name
-                  </FieldLabel>
-                  <Input
-                    {...field}
-                    id="form-profile-update-1-lastName"
-                    aria-invalid={fieldState.invalid}
-                    placeholder="Kinney"
-                    autoComplete="family-name"
-                  />
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </Field>
-              )}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <Controller
+                name="firstName"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="gap-1">
+                    <FieldLabel htmlFor="form-profile-update-1-firstName">
+                      First Name
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id="form-profile-update-1-firstName"
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Robert"
+                      autoComplete="given-name"
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+              <Controller
+                name="lastName"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid} className="gap-1">
+                    <FieldLabel htmlFor="form-profile-update-1-lastName">
+                      Last Name
+                    </FieldLabel>
+                    <Input
+                      {...field}
+                      id="form-profile-update-1-lastName"
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Kinney"
+                      autoComplete="family-name"
+                    />
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                  </Field>
+                )}
+              />
+            </div>
           </div>
 
           <Button type="submit" disabled={loading}>

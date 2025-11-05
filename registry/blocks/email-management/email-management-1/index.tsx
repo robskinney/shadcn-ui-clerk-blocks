@@ -62,11 +62,11 @@ function EmailManagement1Inner({
             </TableHeader>
             <TableBody>
               {emails.map((e) => (
-                <TableRow key={e.id}>
+                <TableRow key={e.id} className="flex my-auto">
                   <TableCell className="flex flex-row gap-2 items-center">
                     <Mail className="size-4 stroke-muted-foreground" />
 
-                    <p className="text-muted-foreground">{e.emailAddress}</p>
+                    <p>{e.emailAddress}</p>
 
                     {e.verification?.status == "verified" && (
                       <Verified className="size-4 stroke-green-700 dark:stroke-green-400" />

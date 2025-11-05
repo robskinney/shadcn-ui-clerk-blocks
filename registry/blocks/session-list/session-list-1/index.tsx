@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Laptop, Smartphone } from "lucide-react";
 import { formatTimestamp } from "@/registry/lib/format-timestamp";
 import { SessionRevokeForm } from "./session-revoke-form";
+import { IoLaptopOutline, IoPhonePortraitOutline } from "react-icons/io5";
 import { fetchSessions } from "./fetchers";
 
 type SessionList1Props = {
@@ -53,11 +54,11 @@ function SessionList1Inner({ sessions }: { sessions: Partial<Session>[] }) {
             <TableBody>
               {sessions.map((s) => (
                 <TableRow key={s.id}>
-                  <TableCell className="flex flex-row gap-2 items-center justify-between">
+                  <TableCell className="flex flex-row gap-2.5 items-center justify-between">
                     {s.latestActivity?.isMobile == true ? (
-                      <Smartphone className="size-8 stroke-muted-foreground" />
+                      <IoPhonePortraitOutline className="size-8 stroke-muted-foreground" />
                     ) : (
-                      <Laptop className="size-8 stroke-muted-foreground" />
+                      <IoLaptopOutline className="size-8 stroke-muted-foreground" />
                     )}
 
                     <div className="flex flex-col w-full text-start font-medium gap-0.5">

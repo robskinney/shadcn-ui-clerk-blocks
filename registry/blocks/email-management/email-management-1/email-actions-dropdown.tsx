@@ -45,10 +45,10 @@ export function EmailActionsDropdown({
       setLoading(true);
       try {
         await deleteEmailAddress(emailId);
-        toast.success("Email removed successfully");
+        toast.success("Email removed successfully.");
       } catch (err) {
         console.error(err);
-        toast.error("Failed to remove email");
+        toast.error("Failed to remove email.");
       } finally {
         setLoading(false);
       }
@@ -62,10 +62,10 @@ export function EmailActionsDropdown({
       setLoading(true);
       try {
         await setEmailPrimary(emailId);
-        toast.success("Email updated successfully");
+        toast.success("Email updated successfully.");
       } catch (err) {
         console.error(err);
-        toast.error("Failed to update email");
+        toast.error("Failed to update email.");
       } finally {
         setLoading(false);
       }

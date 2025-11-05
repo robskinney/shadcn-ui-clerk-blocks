@@ -53,7 +53,7 @@ function UserDropdown2Inner({
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className="flex flex-row items-center gap-2 p-2 w-64 h-12 transition-all duration-100 hover:shadow-md cursor-pointer"
+          className="flex flex-row items-center gap-2 p-2 w-64 h-12 transition-all duration-100 hover:shadow-md"
         >
           <Avatar className="size-8 rounded-full bg-slate-400">
             <AvatarImage
