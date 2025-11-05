@@ -48,6 +48,7 @@ export default function CopySnippet({ name }: { name: string }) {
         </SnippetTabsList>
         {activeCommand && (
           <SnippetCopyButton
+            className="opacity-100"
             onCopy={() => toast.info(`Copied command to clipboard.`)}
             onError={() => toast.error(`Failed to copy command to clipboard.`)}
             value={activeCommand.code}

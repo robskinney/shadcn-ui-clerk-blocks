@@ -17,43 +17,43 @@ import CopySnippet from "@/components/copy-snippet";
 const HomeComponents = [
   {
     name: "user-dropdown-1",
-    description: "A user dropdown component.",
+    description: "A simple user dropdown.",
     signedInVariant: <UserDropdown1 />,
     signedOutVariant: <UserDropdown1 user={MockUser} />,
   },
   {
     name: "user-dropdown-2",
-    description: "Another user dropdown component best used in a sidebar.",
+    description: "Another user dropdown best used in a sidebar.",
     signedInVariant: <UserDropdown2 />,
     signedOutVariant: <UserDropdown2 user={MockUser} />,
   },
   {
     name: "profile-form-1",
-    description: "A user profile form component.",
+    description: "An editable user profile form.",
     signedInVariant: <ProfileForm1 />,
     signedOutVariant: <ProfileForm1 user={MockUser} />,
   },
   {
     name: "sign-up-1",
-    description: "A user registration component.",
+    description: "A user registration card.",
     signedInVariant: <OfflineSignUp1 />,
     signedOutVariant: <SignUp1 />,
   },
   {
     name: "sign-in-1",
-    description: "A user login component.",
+    description: "A user login card.",
     signedInVariant: <OfflineSignIn1 />,
     signedOutVariant: <SignIn1 />,
   },
   {
     name: "session-list-1",
-    description: "A simple session management component.",
+    description: "A simple session management card.",
     signedInVariant: <SessionList1 />,
     signedOutVariant: <SessionList1 sessions={generateMockSessions()} />,
   },
   {
     name: "email-management-1",
-    description: "A simple email management component.",
+    description: "A simple email management card.",
     signedInVariant: <EmailManagement1 />,
     signedOutVariant: <EmailManagement1 emails={MockEmails} />,
   },
@@ -116,25 +116,6 @@ export default function Home() {
             </div>
           </div>
         ))}
-
-        <div className="flex flex-col gap-4 border rounded-lg p-4 relative">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-xl font-semibold tracking-tight">sign-up-1</h2>
-            <h3 className="text-sm text-muted-foreground ">
-              A user registration component.
-            </h3>
-          </div>
-          <div className="flex items-center justify-center min-h-[500px] relative">
-            <SignedIn>
-              <OfflineSignUp1 />
-            </SignedIn>
-            <SignedOut>
-              <SignUp1 />
-            </SignedOut>
-          </div>
-
-          <CopySnippet name="localhost:3000" />
-        </div>
       </main>
     </div>
   );

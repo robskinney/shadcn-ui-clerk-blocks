@@ -221,12 +221,12 @@ function ProfileForm1Inner({
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid} className="gap-1">
-                  <FieldLabel htmlFor="form-profile-update-1-firstName">
-                    First Name
+                  <FieldLabel htmlFor="form-profile-update-1-lastName">
+                    Last Name
                   </FieldLabel>
                   <Input
                     {...field}
-                    id="form-profile-update-1-firstName"
+                    id="form-profile-update-1-lastName"
                     aria-invalid={fieldState.invalid}
                     placeholder="Kinney"
                     autoComplete="family-name"
