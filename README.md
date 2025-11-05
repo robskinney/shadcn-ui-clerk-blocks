@@ -1,23 +1,19 @@
-# registry-template
+# shadcn-ui-clerk-blocks
 
-You can use the `shadcn` CLI to run your own component registry. Running your own
-component registry allows you to distribute your custom components, hooks, pages, and
-other files to any React project.
+You can use the `shadcn` CLI to pull blocks from our component registry.
 
 > [!IMPORTANT]  
-> This template uses Tailwind v4. For Tailwind v3, see [registry-template-v3](https://github.com/shadcn-ui/registry-template-v3).
+> This registry currently supports [Next.js](https://nextjs.org/) projects that use [shadcn/ui](https://ui.shadcn.com/) and [Clerk](https://clerk.com/) for authentication.
 
 ## Getting Started
 
-This is a template for creating a custom registry using Next.js.
+Please be sure to have Clerk installed in your app by adding a `<ClerkProvider>` to your Root Layout. Additionally, a `.env` file must be present with a `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`, which can be found on the Clerk dashboard. Full Clerk quickstart documentation is available [here](https://clerk.com/docs/nextjs/getting-started/quickstart).
 
-- The template uses a `registry.json` file to define components and their files.
-- The `shadcn build` command is used to build the registry.
-- The registry items are served as static files under `public/r/[name].json`.
-- The template also includes a route handler for serving registry items.
-- Every registry item are compatible with the `shadcn` CLI.
-- We have also added v0 integration using the `Open in v0` api.
+Once this setup has been completed, you are ready to begin copying components. Copy the relevant commands for the package manager used in your project and run them within the terminal of your project's folder.
 
-## Documentation
+## Additional
 
-Visit the [shadcn documentation](https://ui.shadcn.com/docs/registry) to view the full documentation.
+- This project was built using Next.js 16 on the App Router, but should support Next.js 15 apps. I plan on providing additional variants to support other frameworks, starting with Vite / TanStack Start.
+- Data is fetched and cache'd using built-in libraries. I plan on providing additional examples for using React Query at a later date.
+- If necessary, each component is split up into sub-components to allow for easier editing and understanding of their structure.
+- Currently pnpm, npm, yarn, and bun are documented package managers on the website. Please submit a request if you'd like me to add any additional managers.
