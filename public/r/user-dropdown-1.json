@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "user-dropdown-1",
+  "type": "registry:block",
+  "title": "User Dropdown - 1",
+  "description": "A simple user dropdown component.",
+  "dependencies": [
+    "@clerk/nextjs",
+    "@clerk/types",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "dropdown-menu",
+    "avatar",
+    "skeleton",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "registry/blocks/user-dropdown/user-dropdown-1.tsx",
+      "content": "\"use client\";\n\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\";\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\";\nimport { LogOut, Menu } from \"lucide-react\";\nimport { useAuth, useUser } from \"@clerk/nextjs\";\nimport { Skeleton } from \"@/components/ui/skeleton\";\nimport { UserResource } from \"@clerk/types\";\nimport { User } from \"@clerk/nextjs/server\";\nimport { Button } from \"@/components/ui/button\";\n\ntype SIDE_OPTIONS = [\"top\", \"right\", \"bottom\", \"left\"];\ntype ALIGN_OPTIONS = [\"start\", \"center\", \"end\"];\ntype Side = SIDE_OPTIONS[number];\ntype Align = ALIGN_OPTIONS[number];\n\ntype UserDropdown1Props = {\n  user?: Partial<UserResource> | Partial<User> | null;\n  dropdownAlign?: Align;\n  dropdownSide?: Side;\n};\n\nexport default function UserDropdown1({\n  user,\n  dropdownAlign,\n  dropdownSide,\n}: UserDropdown1Props) {\n  if (user) {\n    return (\n      <UserDropdown1Inner\n        user={user}\n        dropdownAlign={dropdownAlign}\n        dropdownSide={dropdownSide}\n      />\n    );\n  }\n\n  return <UserDropdown1WithClerk />;\n}\n\nfunction UserDropdown1WithClerk() {\n  const { user, isLoaded, isSignedIn } = useUser();\n\n  if (!isLoaded) return <Skeleton className=\"w-20\" />;\n  if (!isSignedIn || !user)\n    return (\n      <p className=\"text-primary dark:text-secondary-foreground\">Sign in</p>\n    );\n\n  return <UserDropdown1Inner user={user} />;\n}\n\nfunction UserDropdown1Inner({\n  user,\n  dropdownAlign = \"end\",\n  dropdownSide = \"bottom\",\n}: {\n  user: Partial<UserResource> | Partial<User>;\n  dropdownAlign?: Align;\n  dropdownSide?: Side;\n}) {\n  const { signOut } = useAuth();\n\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button\n          className=\"flex flex-row w-20 h-11 items-center justify-between rounded-3xl py-1.5 px-3 gap-1 transition-all hover:shadow-md duration-100 cursor-pointer\"\n          variant=\"outline\"\n        >\n          <div className=\"w-1/2\">\n            <Menu className=\"size-5\" />\n          </div>\n\n          <div className=\"w-1/2\">\n            <Avatar className=\"aspect-square size-8 rounded-full bg-slate-400\">\n              <AvatarImage\n                src={user.imageUrl}\n                className=\"object-cover\"\n                alt=\"User profile picture\"\n              />\n              <AvatarFallback className=\"outline-1 outline-primary bg-linear-to-tr from-pink-300 to-primary/75\" />\n            </Avatar>\n          </div>\n        </Button>\n      </DropdownMenuTrigger>\n\n      <DropdownMenuContent\n        align={dropdownAlign}\n        side={dropdownSide}\n        className=\"w-full\"\n      >\n        <DropdownMenuItem variant=\"destructive\" onClick={() => signOut()}>\n          <LogOut className=\"mr-1 \" size={20} />\n          Log out\n        </DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

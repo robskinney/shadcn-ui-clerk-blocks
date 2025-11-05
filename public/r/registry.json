@@ -1,0 +1,206 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "shadcn-ui-clerk-components",
+  "homepage": "https://robertskinney.com",
+  "items": [
+    {
+      "name": "session-list-1",
+      "type": "registry:block",
+      "title": "Session List - 1",
+      "description": "A simple session management component.",
+      "registryDependencies": [
+        "card",
+        "scroll-area",
+        "alert-dialog",
+        "table",
+        "badge",
+        "button",
+        "skeleton",
+        "dropdown-menu",
+        "sonner"
+      ],
+      "dependencies": ["lucide-react", "@clerk/nextjs", "date-fns"],
+      "files": [
+        {
+          "path": "registry/blocks/session-list/session-list-1/index.tsx",
+          "target": "components/session-list-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/session-list/session-list-1/actions.ts",
+          "target": "components/session-list-1/actions.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/session-list/session-list-1/fetchers.ts",
+          "target": "components/session-list-1/fetchers.ts",
+
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/session-list/session-list-1/session-revoke-form.tsx",
+          "target": "components/session-list-1/session-revoke-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/format-timestamp.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "email-management-1",
+      "type": "registry:block",
+      "title": "Email Management - 1",
+      "description": "A simple email management component.",
+      "registryDependencies": [
+        "card",
+        "scroll-area",
+        "tooltip",
+        "field",
+        "alert-dialog",
+        "dialog",
+        "input",
+        "checkbox",
+        "table",
+        "badge",
+        "button",
+        "dropdown-menu",
+        "sonner"
+      ],
+      "dependencies": [
+        "zod",
+        "react-hook-form",
+        "@hookform/resolvers",
+        "lucide-react",
+        "@clerk/nextjs",
+        "@clerk/backend",
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/email-management/email-management-1/index.tsx",
+          "target": "components/email-management-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/actions.ts",
+          "target": "components/email-management-1/actions.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/fetchers.ts",
+          "target": "components/email-management-1/fetchers.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/types.ts",
+          "target": "components/email-management-1/types.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/email-actions-dropdown.tsx",
+          "target": "components/email-management-1/email-actions-dropdown.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/email-add-form.tsx",
+          "target": "components/email-management-1/email-add-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "profile-form-1",
+      "type": "registry:block",
+      "title": "Profile Form - 1",
+      "description": "A simple profile form.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "avatar",
+        "skeleton",
+        "button",
+        "sonner",
+        "field",
+        "spinner"
+      ],
+      "dependencies": [
+        "zod",
+        "react-hook-form",
+        "@hookform/resolvers",
+        "browser-image-compression",
+        "@clerk/types",
+        "@clerk/nextjs"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/profile-form/profile-form-1/index.tsx",
+          "target": "components/profile-form-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/profile-form/profile-form-1/actions.ts",
+          "target": "components/profile-form-1/actions.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sign-in-1",
+      "type": "registry:block",
+      "title": "Sign In - 1",
+      "description": "A simple login form.",
+      "registryDependencies": ["button", "card", "input", "label", "spinner"],
+      "dependencies": ["@clerk/elements", "react-icons"],
+      "files": [
+        {
+          "path": "registry/blocks/sign-in/sign-in-1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sign-up-1",
+      "type": "registry:block",
+      "title": "Sign Up - 1",
+      "description": "A simple registration form.",
+      "dependencies": ["@clerk/elements"],
+      "registryDependencies": ["button", "card", "input", "label", "spinner"],
+      "files": [
+        {
+          "path": "registry/blocks/sign-up/sign-up-1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "user-dropdown-1",
+      "type": "registry:block",
+      "title": "User Dropdown - 1",
+      "description": "A simple user dropdown component.",
+      "dependencies": ["@clerk/nextjs", "@clerk/types", "lucide-react"],
+      "registryDependencies": ["dropdown-menu", "avatar", "skeleton", "button"],
+      "files": [
+        {
+          "path": "registry/blocks/user-dropdown/user-dropdown-1.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "user-dropdown-2",
+      "type": "registry:block",
+      "title": "User Dropdown - 2",
+      "description": "Another simple user dropdown component best used in a sidebar.",
+      "dependencies": ["@clerk/nextjs", "@clerk/types", "lucide-react"],
+      "registryDependencies": ["avatar", "dropdown-menu", "skeleton", "button"],
+      "files": [
+        {
+          "path": "registry/blocks/user-dropdown/user-dropdown-2.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
