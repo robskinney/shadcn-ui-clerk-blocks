@@ -3,7 +3,8 @@ import { EmailAddress } from "@clerk/backend";
 export type EnhancedLinkedTo = {
   id: string;
   type: string;
-  linkedToDisplayName?: string | null;
+  providerName?: string | null;
+  providerIcon?: React.ComponentType<{ className?: string }>;
 };
 
 export type EnhancedEmailAddress = Partial<EmailAddress> & {

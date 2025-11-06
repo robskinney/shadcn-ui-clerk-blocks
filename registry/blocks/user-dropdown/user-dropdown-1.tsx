@@ -43,7 +43,10 @@ export default function UserDropdown1({
   return <UserDropdown1WithClerk />;
 }
 
-function UserDropdown1WithClerk() {
+function UserDropdown1WithClerk({
+  dropdownAlign,
+  dropdownSide,
+}: UserDropdown1Props) {
   const { user, isLoaded, isSignedIn } = useUser();
 
   if (!isLoaded) return <Skeleton className="w-20" />;
@@ -52,7 +55,13 @@ function UserDropdown1WithClerk() {
       <p className="text-primary dark:text-secondary-foreground">Sign in</p>
     );
 
-  return <UserDropdown1Inner user={user} />;
+  return (
+    <UserDropdown1Inner
+      user={user}
+      dropdownAlign={dropdownAlign}
+      dropdownSide={dropdownSide}
+    />
+  );
 }
 
 function UserDropdown1Inner({

@@ -37,12 +37,12 @@ export const MockEmails: Partial<EnhancedEmailAddress>[] = [
       {
         id: "idn_34lrylyJKroko6TBBVoxkOBMQKd",
         type: "oauth_google",
-        linkedToDisplayName: "Google",
+        providerName: "Google",
       },
       {
         id: "idn_34no4iVTHJAMPxOA40rTrUqTBTA",
         type: "oauth_microsoft",
-        linkedToDisplayName: "Microsoft",
+        providerName: "Microsoft",
       },
     ],
   },

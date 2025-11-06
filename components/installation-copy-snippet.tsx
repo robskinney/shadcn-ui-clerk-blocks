@@ -11,7 +11,7 @@ import {
 import { toast } from "sonner";
 import { useInstallation } from "./installation-provider";
 
-export default function CopySnippet({ name }: { name: string }) {
+export default function InstallationCopySnippet({ name }: { name: string }) {
   const commands = [
     {
       label: "pnpm",

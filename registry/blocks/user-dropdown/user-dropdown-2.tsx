@@ -17,19 +17,39 @@ import { Button } from "@/components/ui/button";
 import { UserResource } from "@clerk/types";
 import { User } from "@clerk/nextjs/server";
 
+type SIDE_OPTIONS = ["top", "right", "bottom", "left"];
+type ALIGN_OPTIONS = ["start", "center", "end"];
+type Side = SIDE_OPTIONS[number];
+type Align = ALIGN_OPTIONS[number];
+
 type UserDropdown2Props = {
   user?: Partial<UserResource> | Partial<User> | null;
+  dropdownAlign?: Align;
+  dropdownSide?: Side;
 };
 
-export default function UserDropdown2({ user }: UserDropdown2Props) {
+export default function UserDropdown2({
+  user,
+  dropdownAlign,
+  dropdownSide,
+}: UserDropdown2Props) {
   if (user) {
-    return <UserDropdown2Inner user={user} />;
+    return (
+      <UserDropdown2Inner
+        user={user}
+        dropdownAlign={dropdownAlign}
+        dropdownSide={dropdownSide}
+      />
+    );
   }
 
   return <UserDropdown2WithClerk />;
 }
 
-function UserDropdown2WithClerk() {
+function UserDropdown2WithClerk({
+  dropdownAlign,
+  dropdownSide,
+}: UserDropdown2Props) {
   const { user, isLoaded, isSignedIn } = useUser();
 
   if (!isLoaded) return <Skeleton className="w-20" />;
@@ -38,13 +58,23 @@ function UserDropdown2WithClerk() {
       <p className="text-primary dark:text-secondary-foreground">Sign in</p>
     );
 
-  return <UserDropdown2Inner user={user} />;
+  return (
+    <UserDropdown2Inner
+      user={user}
+      dropdownAlign={dropdownAlign}
+      dropdownSide={dropdownSide}
+    />
+  );
 }
 
 function UserDropdown2Inner({
   user,
+  dropdownAlign = "end",
+  dropdownSide = "bottom",
 }: {
   user: Partial<UserResource> | Partial<User>;
+  dropdownAlign?: Align;
+  dropdownSide?: Side;
 }) {
   const { signOut } = useAuth();
 
@@ -74,8 +104,8 @@ function UserDropdown2Inner({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-(--radix-dropdown-menu-trigger-width) rounded-lg"
-        side={"bottom"}
-        align="end"
+        align={dropdownAlign}
+        side={dropdownSide}
         sideOffset={8}
       >
         <DropdownMenuGroup>

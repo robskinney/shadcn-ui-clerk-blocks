@@ -30,7 +30,6 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 
 type ProfileForm1Props = {
   user?: Partial<UserResource> | Partial<User> | null;
@@ -48,7 +47,7 @@ const userProfileUpdateFormSchema = z.object({
   picture: z
     .file()
     .min(1)
-    .max(MAX_FILE_SIZE, "Image must be less than 5MB.")
+    .max(MAX_FILE_SIZE, "Image must be less than 8MB.")
     .mime(ACCEPTED_IMAGE_TYPES, "Image must be .jpeg, .jpg, .png, or .webp.")
     .optional(),
   username: z.string().optional(),
@@ -135,11 +134,11 @@ function ProfileForm1Inner({
   }
 
   return (
-    <Card className="w-full sm:w-96 p-3">
+    <Card className="w-full sm:w-96">
       <CardContent>
         <form
           id="form-profile-update-1"
-          className="flex flex-col gap-y-8 p-5"
+          className="flex flex-col gap-y-8 px-3 sm:px-5 py-5"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -192,7 +191,7 @@ function ProfileForm1Inner({
                     </label>
 
                     <FieldDescription className="text-center sm:text-start text-xs">
-                      Recommend size 1:1, up to 1MB
+                      Recommend size 1:1, up to 8MB
                     </FieldDescription>
 
                     {fieldState.invalid && (
