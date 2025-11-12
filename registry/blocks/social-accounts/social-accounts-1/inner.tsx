@@ -30,17 +30,14 @@ import {
   isReverificationCancelledError,
 } from "@clerk/nextjs/errors";
 import { Spinner } from "@/components/ui/spinner";
-import { User } from "@clerk/backend";
 
 export function SocialAccounts1Inner({
   enabledStrategies,
   accounts,
-  user,
   redirectUrl,
 }: {
   enabledStrategies: OAuthStrategy[];
   accounts: Partial<EnhancedExternalAccount>[];
-  user: Partial<UserResource> | Partial<User>;
   redirectUrl: string;
 }) {
   const linkedAccounts = new Map(accounts.map((a) => [a.providerName, a]));
@@ -48,7 +45,7 @@ export function SocialAccounts1Inner({
   const [linkingProvider, setLinkingProvider] = useState<OAuthStrategy | null>(
     null
   );
-  const { user: clerkUser, isLoaded } = useUser();
+  const { user, isLoaded } = useUser();
 
   const [verificationState, setVerificationState] = useState<
     | {
@@ -64,7 +61,7 @@ export function SocialAccounts1Inner({
 
   const createExternalAccount = useReverification(
     (strategy: OAuthStrategy) =>
-      clerkUser?.createExternalAccount({
+      user?.createExternalAccount({
         strategy,
         redirectUrl: redirectUrl,
       }),

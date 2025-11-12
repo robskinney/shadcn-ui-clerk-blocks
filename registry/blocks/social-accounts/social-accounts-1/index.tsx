@@ -17,10 +17,6 @@ export type SocialAccounts1Props = {
    **/
   accounts?: EnhancedExternalAccount[];
   /**
-   * A Clerk [User](https://clerk.com/docs/reference/javascript/user) object retrieved from either the frontend or backend SDK.
-   **/
-  user?: Partial<UserResource> | Partial<User>;
-  /**
    * The URL to redirect to after successfully linking an account.
    * @default "/"
    **/
@@ -30,7 +26,6 @@ export type SocialAccounts1Props = {
 export default function SocialAccounts1({
   enabledStrategies,
   accounts,
-  user,
   redirectUrl = "/",
 }: SocialAccounts1Props) {
   if (accounts) {
@@ -38,7 +33,6 @@ export default function SocialAccounts1({
       <SocialAccounts1Inner
         enabledStrategies={enabledStrategies}
         accounts={JSON.parse(JSON.stringify(accounts))}
-        user={JSON.parse(JSON.stringify(user))}
         redirectUrl={redirectUrl}
       />
     );
@@ -60,13 +54,11 @@ async function SocialAccounts1WithClerk({
   redirectUrl: string;
 }) {
   const accounts = await fetchSocialAccounts();
-  const user = await currentUser();
 
   return (
     <SocialAccounts1Inner
       enabledStrategies={enabledStrategies}
       accounts={JSON.parse(JSON.stringify(accounts))}
-      user={JSON.parse(JSON.stringify(user))}
       redirectUrl={redirectUrl}
     />
   );
