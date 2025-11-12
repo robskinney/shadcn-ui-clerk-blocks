@@ -4,6 +4,8 @@ import ComponentContainer from "./components/component-container";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { createGenerator } from "fumadocs-typescript";
 import { AutoTypeTable } from "fumadocs-typescript/ui";
+import SignIn1 from "./registry/blocks/sign-in/sign-in-1";
+import SignUp1 from "./registry/blocks/sign-up/sign-up-1";
 
 const generator = createGenerator();
 
@@ -16,6 +18,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ComponentContainer,
     SignedIn,
     SignedOut,
+    SignIn1,
+    SignUp1,
     ...components,
   };
 }
