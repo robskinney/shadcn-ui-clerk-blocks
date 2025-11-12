@@ -8,9 +8,12 @@ import SocialAccounts1 from "@/registry/blocks/social-accounts/social-accounts-1
 <div className="not-prose">
   <ComponentContainer>
     <SignedIn>
-      <SocialAccounts1 enabledStrategies={["oauth_google", "oauth_microsoft"]} redirectUrl="/social-accounts-1" />
+      <SocialAccounts1
+        enabledStrategies={["oauth_google", "oauth_microsoft"]}
+        redirectUrl="/social-accounts-1"
+      />
     </SignedIn>
-    <SignedOut>Work in progress.</SignedOut>
+    <SignedOut>Must be signed in to preview this component.</SignedOut>
   </ComponentContainer>
 </div>
 
@@ -32,4 +35,7 @@ import SocialAccounts1 from "@/components/social-accounts-1";
 
 #### Props
 
-<auto-type-table path="../../registry/blocks/social-accounts/social-accounts-1/index.tsx" name="SocialAccounts1Props" />
+<auto-type-table
+  path="../../registry/blocks/social-accounts/social-accounts-1/index.tsx"
+  name="SocialAccounts1Props"
+/>

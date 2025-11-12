@@ -12,7 +12,11 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { getExternalAccount } from "@/registry/lib/external-accounts-map";
-import { OAuthStrategy, SessionVerificationLevel } from "@clerk/types";
+import {
+  OAuthStrategy,
+  SessionVerificationLevel,
+  UserResource,
+} from "@clerk/types";
 import { EnhancedExternalAccount } from "./types";
 import { DotIcon } from "lucide-react";
 import { SocialAccountActionsDropdown } from "./social-account-actions-dropdown";
@@ -26,14 +30,17 @@ import {
   isReverificationCancelledError,
 } from "@clerk/nextjs/errors";
 import { Spinner } from "@/components/ui/spinner";
+import { User } from "@clerk/backend";
 
 export function SocialAccounts1Inner({
-  accounts,
   enabledStrategies,
+  accounts,
+  user,
   redirectUrl,
 }: {
-  accounts: Partial<EnhancedExternalAccount>[];
   enabledStrategies: OAuthStrategy[];
+  accounts: Partial<EnhancedExternalAccount>[];
+  user: Partial<UserResource> | Partial<User>;
   redirectUrl: string;
 }) {
   const linkedAccounts = new Map(accounts.map((a) => [a.providerName, a]));
@@ -41,7 +48,7 @@ export function SocialAccounts1Inner({
   const [linkingProvider, setLinkingProvider] = useState<OAuthStrategy | null>(
     null
   );
-  const { user, isLoaded } = useUser();
+  const { user: clerkUser, isLoaded } = useUser();
 
   const [verificationState, setVerificationState] = useState<
     | {
@@ -57,7 +64,7 @@ export function SocialAccounts1Inner({
 
   const createExternalAccount = useReverification(
     (strategy: OAuthStrategy) =>
-      user?.createExternalAccount({
+      clerkUser?.createExternalAccount({
         strategy,
         redirectUrl: redirectUrl,
       }),

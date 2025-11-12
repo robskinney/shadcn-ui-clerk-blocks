@@ -1,6 +1,8 @@
 import { EnhancedEmailAddress } from "@/registry/blocks/email-management/email-management-1/types";
+import { EnhancedExternalAccount } from "@/registry/blocks/social-accounts/social-accounts-1/types";
 import { Session, User } from "@clerk/nextjs/server";
 import type { EmailAddressResource, UserResource } from "@clerk/types";
+import { FaMicrosoft } from "react-icons/fa";
 
 export const MockUser: Partial<UserResource> | Partial<User> = {
   id: "user_mock_123",
@@ -62,6 +64,29 @@ export const MockEmails: Partial<EnhancedEmailAddress>[] = [
     },
     isPrimary: false,
     linkedTo: [],
+  },
+];
+
+export const MockSocialAccounts: Partial<EnhancedExternalAccount>[] = [
+  {
+    id: "idn_35Mfds74EC8HQTvCKD9dqTPD2J1",
+    provider: "oauth_microsoft",
+    identificationId: "idn_35Mfds74EC8HQTvCKD9dqTPD2J1",
+    emailAddress: "robertskinney@outlook.com",
+    firstName: "Robert",
+    lastName: "Kinney",
+    imageUrl: "https://api.dicebear.com/7.x/thumbs/svg?seed=Brian&scale=80",
+    verification: {
+      status: "verified",
+      strategy: "oauth_microsoft",
+      externalVerificationRedirectURL: null,
+      attempts: null,
+      expireAt: 1762925546043,
+      nonce: null,
+      message: null,
+    },
+    providerName: "Microsoft",
+    providerIcon: FaMicrosoft,
   },
 ];
 
