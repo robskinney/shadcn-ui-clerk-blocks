@@ -1,4 +1,4 @@
-import { ExternalAccountsMap } from "@/registry/lib/external-accounts-map";
+import { getExternalAccount } from "@/registry/lib/external-accounts-map";
 import { currentUser, EmailAddress } from "@clerk/nextjs/server";
 import { EnhancedEmailAddress } from "./types";
 
@@ -15,8 +15,8 @@ export async function fetchEmailAddresses() {
     const linkedTo = email.linkedTo.map((link) => ({
       id: link.id,
       type: link.type,
-      providerName: ExternalAccountsMap[link.type].name ?? undefined,
-      providerIcon: ExternalAccountsMap[link.type].icon ?? undefined,
+      providerName: getExternalAccount(link.type).name ?? undefined,
+      providerIcon: getExternalAccount(link.type).icon ?? undefined,
     }));
 
     return {

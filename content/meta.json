@@ -1,0 +1,13 @@
+{
+  "title": "Clerk Blocks",
+  "description": "A registry of functional, reusable shadcn/ui blocks to be used with Clerk Authentication.",
+  "icon": "Pencil",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "index",
+    "...(introduction)",
+    "---Components---",
+    "...(components)"
+  ]
+}

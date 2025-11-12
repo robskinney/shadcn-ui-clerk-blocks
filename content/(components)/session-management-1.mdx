@@ -1,0 +1,40 @@
+---
+title: session-management-1
+description: A simple session management card.
+---
+
+import { generateMockSessions } from "@/lib/mock";
+import SessionManagement1 from "@/registry/blocks/session-management/session-management-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <SessionManagement1 />
+    </SignedIn>
+    <SignedOut>
+      <SessionManagement1 sessions={generateMockSessions()} />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+#### Installation
+
+```npm
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/session-management-1.json
+```
+
+#### Usage
+
+```tsx
+import SessionManagement1 from "@/components/session-management-1";
+```
+
+```tsx
+<SessionManagement1 />
+```
+
+#### Props
+
+<AutoTypeTable path="./registry/blocks/session-management/session-management-1/index.tsx" name="SessionManagement1Props" />
+
+

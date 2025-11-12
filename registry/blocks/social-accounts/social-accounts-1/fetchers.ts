@@ -1,4 +1,6 @@
-import { ExternalAccountsMap } from "@/registry/lib/external-accounts-map";
+import {
+  getExternalAccount,
+} from "@/registry/lib/external-accounts-map";
 import { currentUser, ExternalAccount } from "@clerk/nextjs/server";
 import { EnhancedExternalAccount } from "./types";
 
@@ -12,8 +14,8 @@ export async function fetchSocialAccounts() {
   const accounts = user.externalAccounts.map((account: ExternalAccount) => {
     return {
       ...account,
-      providerName: ExternalAccountsMap[account.provider].name ?? null,
-      providerIcon: ExternalAccountsMap[account.provider].icon ?? null,
+      providerName: getExternalAccount(account.provider).name ?? null,
+      providerIcon: getExternalAccount(account.provider).icon ?? null,
     };
   });
 

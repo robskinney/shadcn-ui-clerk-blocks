@@ -1,0 +1,37 @@
+---
+title: sign-up-1
+description: A user registration card.
+---
+
+import SignUp1 from "@/registry/blocks/sign-up/sign-up-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <SignUp1 exampleMode={true} />
+    </SignedIn>
+    <SignedOut>
+      <SignUp1 />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+#### Installation
+
+```npm
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/sign-up-1.json
+```
+
+#### Usage
+
+```tsx
+import SignUp1 from "@/components/sign-up-1";
+```
+
+```tsx
+<SignUp1 />
+```
+
+#### Props
+
+<AutoTypeTable path="./registry/blocks/sign-up/sign-up-1.tsx" name="SignUp1Props" />

@@ -30,9 +30,11 @@ import { deleteEmailAddress, setEmailPrimary } from "./actions";
 export function EmailActionsDropdown({
   emailId,
   isPrimary,
+  isLinked,
 }: {
   emailId: string;
   isPrimary: boolean;
+  isLinked: boolean;
 }) {
   const { isSignedIn } = useAuth();
   const [showRemoveDialog, setShowRemoveDialog] = useState(false);
@@ -92,7 +94,7 @@ export function EmailActionsDropdown({
             </DropdownMenuItem>
             <DropdownMenuItem
               variant="destructive"
-              disabled={isPrimary}
+              disabled={isPrimary || isLinked}
               onSelect={() => setShowRemoveDialog(true)}
             >
               Remove email

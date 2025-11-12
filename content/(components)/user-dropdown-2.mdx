@@ -1,0 +1,38 @@
+---
+title: user-dropdown-2
+description: Another user dropdown best used in a sidebar.
+---
+
+import { MockUser } from "@/lib/mock";
+import UserDropdown2 from "@/registry/blocks/user-dropdown/user-dropdown-2";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <UserDropdown2 />
+    </SignedIn>
+    <SignedOut>
+      <UserDropdown2 user={MockUser} />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+#### Installation
+
+```npm
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/user-dropdown-2.json
+```
+
+#### Usage
+
+```tsx
+import UserDropdown2 from "@/components/user-dropdown-2";
+```
+
+```tsx
+<UserDropdown2 />
+```
+
+#### Props
+
+<AutoTypeTable path="./registry/blocks/user-dropdown/user-dropdown-2/index.tsx" name="UserDropdown2Props" />

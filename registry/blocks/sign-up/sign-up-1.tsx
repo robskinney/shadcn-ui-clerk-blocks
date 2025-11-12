@@ -16,10 +16,21 @@ import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Spinner } from "@/components/ui/spinner";
+import { usePathname } from "next/navigation";
 
-export default function SignUp1() {
+export type SignUp1Props = {
+  /**
+  * Disable the functionality of this component for demo purposes.
+  * @default false
+  **/
+  exampleMode?: boolean;
+};
+
+export default function SignUp1({ exampleMode = false }: SignUp1Props) {
+  const pathname = usePathname();
+
   return (
-    <SignUp.Root>
+    <SignUp.Root path={pathname} exampleMode={exampleMode}>
       <Clerk.Loading>
         {(isGlobalLoading) => (
           <>

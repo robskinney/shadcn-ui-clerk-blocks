@@ -1,5 +1,5 @@
 import { EnhancedEmailAddress } from "@/registry/blocks/email-management/email-management-1/types";
-import { EmailAddress, Session, User } from "@clerk/nextjs/server";
+import { Session, User } from "@clerk/nextjs/server";
 import type { EmailAddressResource, UserResource } from "@clerk/types";
 
 export const MockUser: Partial<UserResource> | Partial<User> = {
@@ -14,8 +14,10 @@ export const MockUser: Partial<UserResource> | Partial<User> = {
       id: "email_1",
     } as Partial<EmailAddressResource> as EmailAddressResource,
   ],
-  primaryEmailAddress:
-    `robertskinney@outlook.com` as Partial<EmailAddressResource> as EmailAddressResource,
+  primaryEmailAddress: {
+    emailAddress: "robertskinney@outlook.com",
+    id: "email_1",
+  } as Partial<EmailAddressResource> as EmailAddressResource,
   username: "robskinney",
 };
 

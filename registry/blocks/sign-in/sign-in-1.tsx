@@ -16,10 +16,21 @@ import { Label } from "@/components/ui/label";
 import { FaGoogle, FaMicrosoft } from "react-icons/fa";
 import Link from "next/link";
 import { Spinner } from "@/components/ui/spinner";
+import { usePathname } from "next/navigation";
 
-export default function SignIn1() {
+export type SignIn1Props = {
+  /**
+  * Disable the functionality of this component for demo purposes.
+  * @default false
+  **/
+  exampleMode?: boolean;
+};
+
+export default function SignIn1({ exampleMode = false }: SignIn1Props) {
+  const pathname = usePathname();
+
   return (
-    <SignIn.Root>
+    <SignIn.Root path={pathname} exampleMode={exampleMode}>
       <Clerk.Loading>
         {(isGlobalLoading) => (
           <>
@@ -28,12 +39,12 @@ export default function SignIn1() {
                 <CardContent className="flex flex-col gap-y-6 p-5">
                   <div className="flex flex-col gap-y-2">
                     <CardTitle>Acme, Inc.</CardTitle>
-                    <CardDescription className="my-3">
+                    <CardDescription>
                       Please enter your credentials to continue.
                     </CardDescription>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-x-3 w-full items-center">
+                  <div className="grid grid-cols-2 gap-3 w-full items-center">
                     <Clerk.Connection name="google" asChild>
                       <Button
                         className="w-full"

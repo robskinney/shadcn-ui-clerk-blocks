@@ -1,0 +1,60 @@
+---
+title: Get Started
+description: Clerk Blocks is a registry of functional, reusable shadcn/ui blocks to be used with Clerk Authentication.
+---
+
+These components can be modified, flexed, and used however works best for your use case. I will try to highlight some example use cases, but the important thing to note
+is that the code you copy and paste is yours.
+
+## Compatibility
+
+This registry only officially supports [Next.js](https://nextjs.org/) projects today, but there are plans to support additional frameworks, starting with Vite / TanStack Start.
+
+| Framework       | Version(s) | Support    |
+| --------------- | ---------- | ---------- |
+| Next.js         | 14, 15, 16 | ✅ Full    |
+| Tanstack Router | N/A        | ⚠️ Partial |
+
+## Prerequisites
+
+Please be sure to have Clerk installed and configured in your project. Full Clerk quickstart documentation can be found available [here.](https://clerk.com/docs/nextjs/getting-started/quickstart)
+
+1. A Clerk Provider must be added to the Root Layout of your project.
+
+```tsx title="layout.tsx"
+import { ClerkProvider } from "@clerk/nextjs"; // [!code highlight]
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        // [!code highlight]
+        <ClerkProvider>
+          <main>{children}</main>
+          // [!code highlight]
+        </ClerkProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+2. A `.env` or `.env.local` file must be present with your `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`, which can be found on the Clerk dashboard.
+
+```ts title=".env"
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = "pk_test_xxx";
+CLERK_SECRET_KEY = "sk_test_xxx";
+```
+
+Once this setup has been completed, you are ready to begin copying components.
+
+## Usage
+
+After finding a component you'd like to use, copy the installation command relevant to your project's package manager (pnpm, npm, yarn, or bun)
+and execute it in the terminal. The shadcn registry will automatically install dependencies and relevant files into your project.
+
+Once a component has been installed, refer to the usage guide on it to see examples of how it can be used.

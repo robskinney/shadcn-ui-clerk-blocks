@@ -10,6 +10,10 @@
 !.yarn/releases
 !.yarn/versions
 
+# generated content
+.source
+.vscode
+
 # testing
 /coverage
 
@@ -39,3 +43,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# clerk configuration (can include secrets)
+/.clerk/

@@ -1,0 +1,38 @@
+---
+title: email-management-1
+description: A simple email management card.
+---
+
+import { MockEmails } from "@/lib/mock";
+import EmailManagement1 from "@/registry/blocks/email-management/email-management-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <EmailManagement1 />
+    </SignedIn>
+    <SignedOut>
+      <EmailManagement1 emails={MockEmails} />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+#### Installation
+
+```npm
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/email-management-1.json
+```
+
+#### Usage
+
+```tsx
+import EmailManagement1 from "@/components/email-management-1";
+```
+
+```tsx
+<EmailManagement1 />
+```
+
+#### Props
+
+<AutoTypeTable path="./registry/blocks/email-management/email-management-1/index.tsx" name="EmailManagement1Props" />

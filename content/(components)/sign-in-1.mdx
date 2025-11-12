@@ -1,0 +1,37 @@
+---
+title: sign-in-1
+description: A user login card.
+---
+
+import SignIn1 from "@/registry/blocks/sign-in/sign-in-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <SignIn1 exampleMode={true} />
+    </SignedIn>
+    <SignedOut>
+      <SignIn1 />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+#### Installation
+
+```npm
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/sign-in-1.json
+```
+
+#### Usage
+
+```tsx
+import SignIn1 from "@/components/sign-in-1";
+```
+
+```tsx
+<SignIn1 />
+```
+
+#### Props
+
+<AutoTypeTable path="./registry/blocks/sign-in/sign-in-1.tsx" name="SignIn1Props" />
