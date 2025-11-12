@@ -5,13 +5,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { createGenerator } from "fumadocs-typescript";
 import { AutoTypeTable } from "fumadocs-typescript/ui";
 
-const generator = createGenerator({
-  tsconfigPath: './tsconfig.json',
-  // where to resolve relative paths (normally cwd)
-  basePath: './',
-  // disable file system cache
-  cache: false,
-});
+const generator = createGenerator();
 
 export function getMDXComponents(components?: MDXComponents): MDXComponents {
   return {
