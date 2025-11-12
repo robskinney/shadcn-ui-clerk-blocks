@@ -17,9 +17,34 @@ This registry only officially supports [Next.js](https://nextjs.org/) projects t
 
 ## Prerequisites
 
-Please be sure to have Clerk installed and configured in your project. Full Clerk quickstart documentation can be found available [here.](https://clerk.com/docs/nextjs/getting-started/quickstart)
+### Configure Clerk
 
-1. A Clerk Provider must be added to the Root Layout of your project.
+Full Clerk quickstart documentation can be found available [here.](https://clerk.com/docs/nextjs/getting-started/quickstart)
+
+1. Install `Clerk`
+
+```npm
+npm install @clerk/nextjs
+```
+
+2. Hook up Middleware / Proxy
+
+```tsx title="proxy.ts"
+import { clerkMiddleware } from "@clerk/nextjs/server"; // [!code highlight]
+
+export const config = {
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Always run for API routes
+    "/(api|trpc)(.*)",
+  ],
+};
+
+export default clerkMiddleware(); // [!code highlight]
+```
+
+3. Add a Clerk Provider to the Root Layout of your project
 
 ```tsx title="layout.tsx"
 import { ClerkProvider } from "@clerk/nextjs"; // [!code highlight]
@@ -43,11 +68,50 @@ export default function RootLayout({
 }
 ```
 
-2. A `.env` or `.env.local` file must be present with your `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`, which can be found on the Clerk dashboard.
+4. A `.env` or `.env.local` file must be present with your `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`, which can be found on the Clerk dashboard.
 
 ```ts title=".env"
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = "pk_test_xxx";
 CLERK_SECRET_KEY = "sk_test_xxx";
+```
+
+### Configure shadcn/ui
+
+1. Install `shadcn/ui`
+
+```npm
+npx shadcn@latest init
+```
+
+2. Download `sonner` component
+
+```npm
+npx shadcn@latest add sonner
+```
+
+3. Add `<Toaster />` to your Root Layout
+
+```tsx title="layout.tsx"
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner"; // [!code highlight]
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <ClerkProvider>
+          <main>{children}</main>
+          // [!code highlight]
+          <Toaster />
+        </ClerkProvider>
+      </body>
+    </html>
+  );
+}
 ```
 
 Once this setup has been completed, you are ready to begin copying components.

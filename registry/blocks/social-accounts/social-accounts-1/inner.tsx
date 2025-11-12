@@ -19,7 +19,7 @@ import {
 } from "@clerk/types";
 import { EnhancedExternalAccount } from "./types";
 import { DotIcon } from "lucide-react";
-import { SocialAccountActionsDropdown } from "./social-account-actions-dropdown";
+import { SocialAccountActionsDropdown } from "./actions-dropdown";
 import { useClerk, useReverification, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -86,6 +86,7 @@ export function SocialAccounts1Inner({
         }
       });
     } catch (e) {
+      console.error(e);
       // console.log(err);
       if (isClerkRuntimeError(e) && isReverificationCancelledError(e)) {
         toast.info("Verification cancelled.");

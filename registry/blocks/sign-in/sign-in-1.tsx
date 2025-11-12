@@ -20,13 +20,21 @@ import { usePathname } from "next/navigation";
 
 export type SignIn1Props = {
   /**
-  * Disable the functionality of this component for demo purposes.
-  * @default false
-  **/
+   * The route the user can navigate to for registration.
+   * @default "/sign-up"
+   **/
+  signUpUrl?: string;
+  /**
+   * Disable the functionality of this component for demo purposes.
+   * @default false
+   **/
   exampleMode?: boolean;
 };
 
-export default function SignIn1({ exampleMode = false }: SignIn1Props) {
+export default function SignIn1({
+  exampleMode = false,
+  signUpUrl = "/sign-up",
+}: SignIn1Props) {
   const pathname = usePathname();
 
   return (
@@ -124,7 +132,7 @@ export default function SignIn1({ exampleMode = false }: SignIn1Props) {
 
                   <Button variant="link" size="sm" asChild>
                     <Link
-                      href="/sign-up"
+                      href={signUpUrl}
                       className="text-primary dark:text-secondary-foreground w-full text-wrap"
                     >
                       Don&apos;t have an account? Sign up

@@ -4,6 +4,120 @@
   "homepage": "https://robertskinney.com",
   "items": [
     {
+      "name": "email-management-1",
+      "type": "registry:block",
+      "title": "Email Management - 1",
+      "description": "A simple email management component.",
+      "registryDependencies": [
+        "card",
+        "scroll-area",
+        "tooltip",
+        "field",
+        "alert-dialog",
+        "dialog",
+        "input",
+        "checkbox",
+        "table",
+        "badge",
+        "button",
+        "dropdown-menu",
+        "sonner"
+      ],
+      "dependencies": [
+        "zod",
+        "react-hook-form",
+        "@hookform/resolvers",
+        "lucide-react",
+        "@clerk/nextjs",
+        "@clerk/backend",
+        "sonner"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/email-management/email-management-1/index.tsx",
+          "target": "components/email-management-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/inner.tsx",
+          "target": "components/email-management-1/inner.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/actions.ts",
+          "target": "components/email-management-1/actions.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/fetchers.ts",
+          "target": "components/email-management-1/fetchers.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/types.ts",
+          "target": "components/email-management-1/types.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/email-actions-dropdown.tsx",
+          "target": "components/email-management-1/email-actions-dropdown.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/email-add-form.tsx",
+          "target": "components/email-management-1/email-add-form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/external-accounts-map.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "profile-form-1",
+      "type": "registry:block",
+      "title": "Profile Form - 1",
+      "description": "A simple profile form.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "avatar",
+        "skeleton",
+        "button",
+        "sonner",
+        "field",
+        "spinner",
+        "input-group",
+        "label"
+      ],
+      "dependencies": [
+        "zod",
+        "react-hook-form",
+        "@hookform/resolvers",
+        "browser-image-compression",
+        "@clerk/types",
+        "@clerk/nextjs"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/profile-form/profile-form-1/index.tsx",
+          "target": "components/profile-form-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/profile-form/profile-form-1/inner.tsx",
+          "target": "components/profile-form-1/inner.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/profile-form/profile-form-1/actions.ts",
+          "target": "components/profile-form-1/actions.ts",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "session-management-1",
       "type": "registry:block",
       "title": "Session Management - 1",
@@ -53,106 +167,6 @@
       ]
     },
     {
-      "name": "email-management-1",
-      "type": "registry:block",
-      "title": "Email Management - 1",
-      "description": "A simple email management component.",
-      "registryDependencies": [
-        "card",
-        "scroll-area",
-        "tooltip",
-        "field",
-        "alert-dialog",
-        "dialog",
-        "input",
-        "checkbox",
-        "table",
-        "badge",
-        "button",
-        "dropdown-menu",
-        "sonner"
-      ],
-      "dependencies": [
-        "zod",
-        "react-hook-form",
-        "@hookform/resolvers",
-        "lucide-react",
-        "@clerk/nextjs",
-        "@clerk/backend",
-        "sonner"
-      ],
-      "files": [
-        {
-          "path": "registry/blocks/email-management/email-management-1/index.tsx",
-          "target": "components/email-management-1/index.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/email-management/email-management-1/actions.ts",
-          "target": "components/email-management-1/actions.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/email-management/email-management-1/fetchers.ts",
-          "target": "components/email-management-1/fetchers.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/email-management/email-management-1/types.ts",
-          "target": "components/email-management-1/types.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/email-management/email-management-1/email-actions-dropdown.tsx",
-          "target": "components/email-management-1/email-actions-dropdown.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/email-management/email-management-1/email-add-form.tsx",
-          "target": "components/email-management-1/email-add-form.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "profile-form-1",
-      "type": "registry:block",
-      "title": "Profile Form - 1",
-      "description": "A simple profile form.",
-      "registryDependencies": [
-        "card",
-        "input",
-        "avatar",
-        "skeleton",
-        "button",
-        "sonner",
-        "field",
-        "spinner",
-        "input-group",
-        "label"
-      ],
-      "dependencies": [
-        "zod",
-        "react-hook-form",
-        "@hookform/resolvers",
-        "browser-image-compression",
-        "@clerk/types",
-        "@clerk/nextjs"
-      ],
-      "files": [
-        {
-          "path": "registry/blocks/profile-form/profile-form-1/index.tsx",
-          "target": "components/profile-form-1/index.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/profile-form/profile-form-1/actions.ts",
-          "target": "components/profile-form-1/actions.ts",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "sign-in-1",
       "type": "registry:block",
       "title": "Sign In - 1",
@@ -177,6 +191,66 @@
         {
           "path": "registry/blocks/sign-up/sign-up-1.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "social-accounts-1",
+      "type": "registry:block",
+      "title": "Social Accounts - 1",
+      "description": "A simple external account management card..",
+      "dependencies": [
+        "lucide-react",
+        "sonner",
+        "@clerk/nextjs",
+        "@clerk/types"
+      ],
+      "registryDependencies": [
+        "alert-dialog",
+        "button",
+        "card",
+        "dropdown-menu",
+        "spinner",
+        "table"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/social-accounts/social-accounts-1/actions.ts",
+          "target": "components/social-accounts-1/actions.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/social-accounts/social-accounts-1/fetchers.ts",
+          "target": "components/social-accounts-1/fetchers.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/social-accounts/social-accounts-1/index.tsx",
+          "target": "components/social-accounts-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/social-accounts/social-accounts-1/inner.tsx",
+          "target": "components/social-accounts-1/inner.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/social-accounts/social-accounts-1/actions-dropdown.tsx",
+          "target": "components/social-accounts-1/actions-dropdown.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/social-accounts/social-accounts-1/types.ts",
+          "target": "components/social-accounts-1/types.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/verification-component.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/external-accounts-map.ts",
+          "type": "registry:lib"
         }
       ]
     },

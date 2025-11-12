@@ -96,6 +96,7 @@ export default function ProfileForm1Inner({
         await updateUserProfile(processedData);
         toast.success("Profile updated successfully.");
       } catch (err) {
+        console.error(err);
         toast.error("Failed to update profile.");
       } finally {
         setLoading(false);

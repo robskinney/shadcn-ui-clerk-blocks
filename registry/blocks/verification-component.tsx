@@ -114,6 +114,7 @@ export function VerificationComponent({
       onComplete();
       toast.success("Session verified successfully.");
     } catch (e) {
+      console.error(e);
       toast.error("An error occurred verifying session.");
     } finally {
       setLoading(false);
