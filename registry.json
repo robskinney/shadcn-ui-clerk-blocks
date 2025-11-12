@@ -4,9 +4,9 @@
   "homepage": "https://robertskinney.com",
   "items": [
     {
-      "name": "session-list-1",
+      "name": "session-management-1",
       "type": "registry:block",
-      "title": "Session List - 1",
+      "title": "Session Management - 1",
       "description": "A simple session management component.",
       "registryDependencies": [
         "card",
@@ -22,24 +22,28 @@
       "dependencies": ["lucide-react", "@clerk/nextjs", "date-fns"],
       "files": [
         {
-          "path": "registry/blocks/session-list/session-list-1/index.tsx",
-          "target": "components/session-list-1/index.tsx",
+          "path": "registry/blocks/session-management/session-management-1/index.tsx",
+          "target": "components/session-management-1/index.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/blocks/session-list/session-list-1/actions.ts",
-          "target": "components/session-list-1/actions.ts",
+          "path": "registry/blocks/session-management/session-management-1/actions.ts",
+          "target": "components/session-management-1/actions.ts",
           "type": "registry:component"
         },
         {
-          "path": "registry/blocks/session-list/session-list-1/fetchers.ts",
-          "target": "components/session-list-1/fetchers.ts",
-
+          "path": "registry/blocks/session-management/session-management-1/fetchers.ts",
+          "target": "components/session-management-1/fetchers.ts",
           "type": "registry:component"
         },
         {
-          "path": "registry/blocks/session-list/session-list-1/session-revoke-form.tsx",
-          "target": "components/session-list-1/session-revoke-form.tsx",
+          "path": "registry/blocks/session-management/session-management-1/inner.tsx",
+          "target": "components/session-management-1/inner.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/session-management/session-management-1/session-revoke-form.tsx",
+          "target": "components/session-management-1/session-revoke-form.tsx",
           "type": "registry:component"
         },
         {
@@ -185,8 +189,19 @@
       "registryDependencies": ["dropdown-menu", "avatar", "skeleton", "button"],
       "files": [
         {
-          "path": "registry/blocks/user-dropdown/user-dropdown-1.tsx",
+          "path": "registry/blocks/user-dropdown/user-dropdown-1/index.tsx",
+          "target": "components/user-dropdown-1/index.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/user-dropdown/user-dropdown-1/inner.tsx",
+          "target": "components/user-dropdown-1/inner.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/user-dropdown/user-dropdown-1/types.ts",
+          "target": "components/user-dropdown-1/types.ts",
+          "type": "registry:file"
         }
       ]
     },
@@ -199,8 +214,19 @@
       "registryDependencies": ["avatar", "dropdown-menu", "skeleton", "button"],
       "files": [
         {
-          "path": "registry/blocks/user-dropdown/user-dropdown-2.tsx",
+          "path": "registry/blocks/user-dropdown/user-dropdown-2/index.tsx",
+          "target": "components/user-dropdown-2/index.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/user-dropdown/user-dropdown-2/inner.tsx",
+          "target": "components/user-dropdown-2/inner.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/user-dropdown/user-dropdown-2/types.ts",
+          "target": "components/user-dropdown-2/types.ts",
+          "type": "registry:file"
         }
       ]
     }
