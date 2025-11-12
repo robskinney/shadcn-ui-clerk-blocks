@@ -24,7 +24,6 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@/.source": [".source"]
     }
   },
   "include": [
