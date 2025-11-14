@@ -21,7 +21,8 @@
         "badge",
         "button",
         "dropdown-menu",
-        "sonner"
+        "sonner",
+        "skeleton"
       ],
       "dependencies": [
         "zod",
@@ -34,28 +35,8 @@
       ],
       "files": [
         {
-          "path": "registry/blocks/email-management/email-management-1/index.tsx",
-          "target": "components/email-management-1/index.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/email-management/email-management-1/inner.tsx",
-          "target": "components/email-management-1/inner.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "registry/blocks/email-management/email-management-1/actions.ts",
           "target": "components/email-management-1/actions.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/email-management/email-management-1/fetchers.ts",
-          "target": "components/email-management-1/fetchers.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/email-management/email-management-1/types.ts",
-          "target": "components/email-management-1/types.ts",
           "type": "registry:component"
         },
         {
@@ -69,7 +50,22 @@
           "type": "registry:component"
         },
         {
-          "path": "registry/lib/external-accounts-map.ts",
+          "path": "registry/blocks/email-management/email-management-1/index.tsx",
+          "target": "components/email-management-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/types.ts",
+          "target": "components/email-management-1/types.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/email-management/email-management-1/utils.ts",
+          "target": "components/email-management-1/utils.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/format-external-accounts.ts",
           "type": "registry:lib"
         }
       ]
@@ -101,18 +97,13 @@
       ],
       "files": [
         {
-          "path": "registry/blocks/profile-form/profile-form-1/index.tsx",
-          "target": "components/profile-form-1/index.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/profile-form/profile-form-1/inner.tsx",
-          "target": "components/profile-form-1/inner.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "registry/blocks/profile-form/profile-form-1/actions.ts",
           "target": "components/profile-form-1/actions.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/profile-form/profile-form-1/index.tsx",
+          "target": "components/profile-form-1/index.tsx",
           "type": "registry:component"
         }
       ]
@@ -136,11 +127,6 @@
       "dependencies": ["lucide-react", "@clerk/nextjs", "date-fns"],
       "files": [
         {
-          "path": "registry/blocks/session-management/session-management-1/index.tsx",
-          "target": "components/session-management-1/index.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "registry/blocks/session-management/session-management-1/actions.ts",
           "target": "components/session-management-1/actions.ts",
           "type": "registry:component"
@@ -148,6 +134,11 @@
         {
           "path": "registry/blocks/session-management/session-management-1/fetchers.ts",
           "target": "components/session-management-1/fetchers.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/session-management/session-management-1/index.tsx",
+          "target": "components/session-management-1/index.tsx",
           "type": "registry:component"
         },
         {
@@ -159,6 +150,16 @@
           "path": "registry/blocks/session-management/session-management-1/session-revoke-form.tsx",
           "target": "components/session-management-1/session-revoke-form.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/session-management/session-management-1/types.ts",
+          "target": "components/session-management-1/types.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/session-management/session-management-1/utils.ts",
+          "target": "components/session-management-1/utils.ts",
+          "type": "registry:file"
         },
         {
           "path": "registry/lib/format-timestamp.ts",
@@ -211,17 +212,18 @@
         "card",
         "dropdown-menu",
         "spinner",
-        "table"
+        "table",
+        "skeleton"
       ],
       "files": [
         {
-          "path": "registry/blocks/social-accounts/social-accounts-1/actions.ts",
-          "target": "components/social-accounts-1/actions.ts",
-          "type": "registry:file"
+          "path": "registry/blocks/social-accounts/social-accounts-1/actions-dropdown.tsx",
+          "target": "components/social-accounts-1/actions-dropdown.tsx",
+          "type": "registry:component"
         },
         {
-          "path": "registry/blocks/social-accounts/social-accounts-1/fetchers.ts",
-          "target": "components/social-accounts-1/fetchers.ts",
+          "path": "registry/blocks/social-accounts/social-accounts-1/actions.ts",
+          "target": "components/social-accounts-1/actions.ts",
           "type": "registry:file"
         },
         {
@@ -230,26 +232,11 @@
           "type": "registry:component"
         },
         {
-          "path": "registry/blocks/social-accounts/social-accounts-1/inner.tsx",
-          "target": "components/social-accounts-1/inner.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/social-accounts/social-accounts-1/actions-dropdown.tsx",
-          "target": "components/social-accounts-1/actions-dropdown.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/social-accounts/social-accounts-1/types.ts",
-          "target": "components/social-accounts-1/types.ts",
-          "type": "registry:file"
-        },
-        {
           "path": "registry/blocks/verification-component.tsx",
           "type": "registry:component"
         },
         {
-          "path": "registry/lib/external-accounts-map.ts",
+          "path": "registry/lib/format-external-accounts.ts",
           "type": "registry:lib"
         }
       ]
@@ -266,16 +253,6 @@
           "path": "registry/blocks/user-dropdown/user-dropdown-1/index.tsx",
           "target": "components/user-dropdown-1/index.tsx",
           "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/user-dropdown/user-dropdown-1/inner.tsx",
-          "target": "components/user-dropdown-1/inner.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/user-dropdown/user-dropdown-1/types.ts",
-          "target": "components/user-dropdown-1/types.ts",
-          "type": "registry:file"
         }
       ]
     },
@@ -291,16 +268,6 @@
           "path": "registry/blocks/user-dropdown/user-dropdown-2/index.tsx",
           "target": "components/user-dropdown-2/index.tsx",
           "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/user-dropdown/user-dropdown-2/inner.tsx",
-          "target": "components/user-dropdown-2/inner.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/blocks/user-dropdown/user-dropdown-2/types.ts",
-          "target": "components/user-dropdown-2/types.ts",
-          "type": "registry:file"
         }
       ]
     }

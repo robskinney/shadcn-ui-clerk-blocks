@@ -26,11 +26,14 @@ import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { useAuth } from "@clerk/nextjs";
 import { deleteSocialAccount } from "./actions";
+import { UserResource } from "@clerk/types";
 
 export function SocialAccountActionsDropdown({
   accountId,
+  user,
 }: {
   accountId: string;
+  user: UserResource;
 }) {
   const { isSignedIn } = useAuth();
   const [showRemoveDialog, setShowRemoveDialog] = useState(false);
@@ -43,10 +46,14 @@ export function SocialAccountActionsDropdown({
       setLoading(true);
       try {
         await deleteSocialAccount(accountId);
+        user.reload();
         toast.success("Account removed successfully.");
       } catch (err) {
-        console.error(err);
-        toast.error("Failed to remove account.");
+        if (err instanceof Error) {
+          toast.error(err.message);
+        } else {
+          toast.error("An unknown error occured removing the social account.");
+        }
       } finally {
         setLoading(false);
       }

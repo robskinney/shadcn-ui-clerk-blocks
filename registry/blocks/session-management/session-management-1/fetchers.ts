@@ -1,15 +1,19 @@
-import { clerkClient, auth, Session } from "@clerk/nextjs/server";
+import { clerkClient, currentUser } from "@clerk/nextjs/server";
 
 export async function fetchSessions() {
-  const { userId } = await auth();
+  const user = await currentUser();
 
-  if (!userId) {
-    throw new Error("Failed to retrieve email addresses");
+  if (!user) {
+    throw new Error("Failed to retrieve session information.");
   }
 
   const client = await clerkClient();
-  const sessions: Session[] = (
-    await client.sessions.getSessionList({ userId, status: "active" })
+
+  const sessions = (
+    await client.sessions.getSessionList({
+      userId: user.id,
+      status: "active",
+    })
   ).data;
 
   return sessions;

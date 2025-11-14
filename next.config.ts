@@ -14,6 +14,14 @@ const nextConfig: NextConfig = {
         source: "/sign-up-1/sso-callback",
         destination: "/sso-callback",
       },
+      {
+        source: "/sign-in-1/continue",
+        destination: "/sign-in-1",
+      },
+      {
+        source: "/sign-up-1/continue",
+        destination: "/sign-up-1",
+      },
     ];
   },
 };

@@ -58,8 +58,11 @@ export function EmailAddForm() {
         setShowAddDialog(false);
         toast.success("Email created successfully.");
       } catch (err) {
-        console.error(err);
-        toast.error("Failed to create email.");
+        if (err instanceof Error) {
+          toast.error(err.message);
+        } else {
+          toast.error("An unknown error occured creating the email.");
+        }
       } finally {
         setLoading(false);
       }

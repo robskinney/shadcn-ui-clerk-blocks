@@ -8,21 +8,21 @@ import SignUp1 from "@/registry/blocks/sign-up/sign-up-1";
 <div className="not-prose">
   <ComponentContainer>
     <SignedIn>
-      <SignUp1 exampleMode={true} />
+      <SignUp1 exampleMode={true} signInUrl="/sign-in-1" />
     </SignedIn>
     <SignedOut>
-      <SignUp1 />
+      <SignUp1 signInUrl="/sign-in-1" />
     </SignedOut>
   </ComponentContainer>
 </div>
 
-#### Installation
+## Installation
 
 ```npm
 npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/sign-up-1.json
 ```
 
-#### Usage
+## Usage
 
 ```tsx
 import SignUp1 from "@/components/sign-up-1";
@@ -32,6 +32,9 @@ import SignUp1 from "@/components/sign-up-1";
 <SignUp1 />
 ```
 
-#### Props
+## Props
 
-<auto-type-table path="../../registry/blocks/sign-up/sign-up-1.tsx" name="SignUp1Props" />
+<auto-type-table
+  path="../../registry/blocks/sign-up/sign-up-1.tsx"
+  name="SignUp1Props"
+/>

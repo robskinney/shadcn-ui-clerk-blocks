@@ -2,7 +2,6 @@
 
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Session } from "@clerk/nextjs/server";
 import {
   Table,
   TableBody,
@@ -15,11 +14,12 @@ import { Badge } from "@/components/ui/badge";
 import { formatTimestamp } from "@/registry/lib/format-timestamp";
 import { SessionRevokeForm } from "./session-revoke-form";
 import { IoLaptopOutline, IoPhonePortraitOutline } from "react-icons/io5";
+import { FormattedSession } from "./types";
 
 export default function SessionManagement1Inner({
   sessions,
 }: {
-  sessions: Partial<Session>[];
+  sessions: FormattedSession[];
 }) {
   return (
     <Card className="w-full p-3">
@@ -39,7 +39,7 @@ export default function SessionManagement1Inner({
               {sessions.map((s) => (
                 <TableRow key={s.id}>
                   <TableCell className="flex flex-row gap-2.5 items-center justify-between">
-                    {s.latestActivity?.isMobile == true ? (
+                    {s.isMobile == true ? (
                       <IoPhonePortraitOutline className="size-8 stroke-muted-foreground" />
                     ) : (
                       <IoLaptopOutline className="size-8 stroke-muted-foreground" />
@@ -47,9 +47,7 @@ export default function SessionManagement1Inner({
 
                     <div className="flex flex-col w-full text-start font-medium gap-0.5">
                       <div className="flex flex-row w-full gap-1.5 items-center justify-start">
-                        <p className="font-semibold">
-                          {s.latestActivity?.deviceType}
-                        </p>
+                        <p className="font-semibold">{s.deviceType}</p>
                         {s.status == "active" && (
                           <Badge className="font-bold text-[0.6rem] bg-green-50 text-green-700 dark:bg-green-900/15 dark:text-green-400 dark:border-green-200/15">
                             Active
@@ -58,19 +56,18 @@ export default function SessionManagement1Inner({
                       </div>
 
                       <p className="text-xs text-muted-foreground">
-                        {s.latestActivity?.browserName}{" "}
-                        {s.latestActivity?.browserVersion}
+                        {s.browserName} {s.browserVersion}
                       </p>
                     </div>
                   </TableCell>
                   <TableCell className="text-muted-foreground">
-                    {`${s.latestActivity?.ipAddress} (${s.latestActivity?.city})`}
+                    {`${s.ipAddress} (${s.city})`}
                   </TableCell>
                   <TableCell className="text-muted-foreground">
                     {formatTimestamp(s.updatedAt!)}
                   </TableCell>
                   <TableCell className="text-right">
-                    <SessionRevokeForm sessionId={s.id!} />
+                    <SessionRevokeForm sessionId={s.id} />
                   </TableCell>
                 </TableRow>
               ))}

@@ -1,17 +1,6 @@
 import { clerkMiddleware } from "@clerk/nextjs/server";
-import { NextResponse } from "next/server";
 
-export default clerkMiddleware((auth, req) => {
-  const { pathname } = req.nextUrl;
-
-  // ✅ Let your /sign-in-1 subroutes (e.g. /sign-in-1/sso-callback) work dynamically
-  // if (pathname.startsWith("/sign-in-1/")) {
-  //   return NextResponse.rewrite(new URL(pathname, req.url));
-  // }
-
-  // Default: allow
-  return NextResponse.next();
-});
+export default clerkMiddleware();
 
 export const config = {
   matcher: [

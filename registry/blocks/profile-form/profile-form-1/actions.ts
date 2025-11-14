@@ -1,7 +1,7 @@
 "use server";
 
 import { auth, clerkClient } from "@clerk/nextjs/server";
-import { UserProfileUpdateFormValues } from "./inner";
+import { UserProfileUpdateFormValues } from "./index";
 
 export async function updateUserProfile(data: UserProfileUpdateFormValues) {
   const { userId } = await auth();

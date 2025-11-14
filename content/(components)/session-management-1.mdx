@@ -5,6 +5,7 @@ description: A simple session management card.
 
 import { generateMockSessions } from "@/lib/mock";
 import SessionManagement1 from "@/registry/blocks/session-management/session-management-1";
+import SessionManagement1Inner from "@/registry/blocks/session-management/session-management-1/inner";
 
 <div className="not-prose">
   <ComponentContainer>
@@ -12,18 +13,20 @@ import SessionManagement1 from "@/registry/blocks/session-management/session-man
       <SessionManagement1 />
     </SignedIn>
     <SignedOut>
-      <SessionManagement1 sessions={generateMockSessions()} />
+      <SessionManagement1Inner sessions={generateMockSessions()} />
     </SignedOut>
   </ComponentContainer>
 </div>
 
-#### Installation
+## Installation
 
 ```npm
 npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/session-management-1.json
 ```
 
-#### Usage
+## Usage
+
+### Basic
 
 ```tsx
 import SessionManagement1 from "@/components/session-management-1";
@@ -33,8 +36,79 @@ import SessionManagement1 from "@/components/session-management-1";
 <SessionManagement1 />
 ```
 
-#### Props
+### With Manual Fetching
 
-<auto-type-table path="../../registry/blocks/session-management/session-management-1/index.tsx" name="SessionManagement1Props" />
+#### Server
 
+```tsx title="page.tsx"
+import SessionManagement1 from "@/components/session-management-1";
+import { fetchSessions } from "@/components/session-management-1/fetchers";
 
+export default async function Page() {
+  const sessions = await fetchSessions();
+
+  if (!sessions) return;
+
+  return <SessionManagement1 sessions={sessions} />;
+}
+```
+
+#### Client
+
+```tsx title="api/sessions/route.ts"
+import { fetchSessions } from "@/components/session-management-1/fetchers";
+
+export async function GET() {
+  const sessions = await fetchSessions();
+
+  if (!sessions) {
+    throw new Error("Failed to retrieve sessions.");
+  }
+
+  return Response.json({ sessions });
+}
+```
+
+```tsx title="page.tsx"
+"use client";
+
+import { useEffect, useState } from "react";
+import { Session } from "@clerk/backend";
+import SessionManagement1Inner from "@/components/session-management-1/inner";
+import { formatSessions } from "@/components/session-management-1/utils";
+
+import { Spinner } from "@/components/ui/spinner";
+
+async function loadSessions() {
+  let res = await fetch("/api/sessions");
+  let { sessions }: { sessions: Session[] } = await res.json();
+
+  return sessions;
+}
+
+export default function Page() {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [sessions, setSessions] = useState<Session[] | null>(null);
+
+  useEffect(() => {
+    loadSessions()
+      .then((s) => setSessions(s))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (!sessions) return;
+
+  return <SessionManagement1Inner sessions={formatSessions(sessions)} />;
+}
+```
+
+## Props
+
+<auto-type-table
+  path="../../registry/blocks/session-management/session-management-1/index.tsx"
+  name="SessionManagement1Props"
+/>

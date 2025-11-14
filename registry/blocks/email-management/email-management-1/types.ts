@@ -1,13 +1,9 @@
-import { EmailAddress } from "@clerk/backend";
+import { IdentificationLinkJSON } from "@clerk/types";
 
-export type EnhancedLinkedTo = {
+export type FormattedEmailAddress = {
   id: string;
-  type: string;
-  providerName?: string | null;
-  providerIcon?: React.ComponentType<{ className?: string }>;
-};
-
-export type EnhancedEmailAddress = Partial<EmailAddress> & {
-  isPrimary?: boolean;
-  linkedTo?: EnhancedLinkedTo[];
+  emailAddress: string;
+  isVerified: boolean;
+  isPrimary: boolean;
+  linkedTo?: IdentificationLinkJSON[];
 };

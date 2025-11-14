@@ -17,13 +17,15 @@ import ProfileForm1 from "@/registry/blocks/profile-form/profile-form-1";
   </ComponentContainer>
 </div>
 
-#### Installation
+## Installation
 
 ```npm
 npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/profile-form-1.json
 ```
 
-#### Usage
+## Usage
+
+### Basic
 
 ```tsx
 import ProfileForm1 from "@/components/profile-form-1";
@@ -33,7 +35,51 @@ import ProfileForm1 from "@/components/profile-form-1";
 <ProfileForm1 />
 ```
 
-#### Props
+### With Manual Fetching
 
-<auto-type-table path="../../registry/blocks/profile-form/profile-form-1/index.tsx" name="ProfileForm1Props" />
+#### Server
 
+```tsx title="page.tsx"
+import ProfileForm1 from "@/components/profile-form-1";
+import { formatUser } from "@/lib/format-user";
+import { currentUser } from "@clerk/nextjs/server";
+
+export default async function Page() {
+  const user = await currentUser();
+
+  if (!user) return;
+
+  return <ProfileForm1 user={formatUser(user)} />;
+}
+```
+
+#### Client
+
+```tsx title="page.tsx"
+"use client";
+
+import ProfileForm1 from "@/components/profile-form-1";
+import { formatUser } from "@/lib/format-user";
+import { useUser } from "@clerk/nextjs";
+
+import { Spinner } from "@/components/ui/spinner";
+
+export default function Page() {
+  const { user, isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return <Spinner />;
+  }
+
+  if (!user) return;
+
+  return <ProfileForm1 user={formatUser(user)} />;
+}
+```
+
+## Props
+
+<auto-type-table
+  path="../../registry/blocks/profile-form/profile-form-1/index.tsx"
+  name="ProfileForm1Props"
+/>

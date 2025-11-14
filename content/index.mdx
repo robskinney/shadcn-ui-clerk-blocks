@@ -21,13 +21,13 @@ This registry only officially supports [Next.js](https://nextjs.org/) projects t
 
 Full Clerk quickstart documentation can be found available [here.](https://clerk.com/docs/nextjs/getting-started/quickstart)
 
-1. Install `Clerk`
+1. Install Clerk
 
 ```npm
 npm install @clerk/nextjs
 ```
 
-2. Hook up Middleware / Proxy
+2. Hook up Proxy (Middleware on Next.js 15 and below)
 
 ```tsx title="proxy.ts"
 import { clerkMiddleware } from "@clerk/nextjs/server"; // [!code highlight]
@@ -44,7 +44,7 @@ export const config = {
 export default clerkMiddleware(); // [!code highlight]
 ```
 
-3. Add a Clerk Provider to the Root Layout of your project
+3. Add a `ClerkProvider` to the Root Layout of your project
 
 ```tsx title="layout.tsx"
 import { ClerkProvider } from "@clerk/nextjs"; // [!code highlight]

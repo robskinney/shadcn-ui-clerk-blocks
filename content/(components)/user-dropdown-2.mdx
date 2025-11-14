@@ -17,13 +17,15 @@ import UserDropdown2 from "@/registry/blocks/user-dropdown/user-dropdown-2";
   </ComponentContainer>
 </div>
 
-#### Installation
+## Installation
 
 ```npm
 npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/user-dropdown-2.json
 ```
 
-#### Usage
+## Usage
+
+### Basic
 
 ```tsx
 import UserDropdown2 from "@/components/user-dropdown-2";
@@ -33,6 +35,50 @@ import UserDropdown2 from "@/components/user-dropdown-2";
 <UserDropdown2 />
 ```
 
-#### Props
+### With Manual Fetching
 
-<auto-type-table path="../../registry/blocks/user-dropdown/user-dropdown-2/index.tsx" name="UserDropdown2Props" />
+#### Server
+
+```tsx title="page.tsx"
+import UserDropdown2 from "@/components/user-dropdown-2";
+import { formatUser } from "@/lib/format-user";
+import { currentUser } from "@clerk/nextjs/server";
+
+export default async function Page() {
+  const user = await currentUser();
+
+  if (!user) return;
+
+  return <UserDropdown2 user={formatUser(user)} />;
+}
+```
+
+#### Client
+
+```tsx title="page.tsx"
+"use client";
+
+import UserDropdown2 from "@/components/user-dropdown-2";
+import { useUser } from "@clerk/nextjs";
+
+import { Spinner } from "@/components/ui/spinner";
+
+export default function Page() {
+  const { user, isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return <Spinner />;
+  }
+
+  if (!user) return;
+
+  return <UserDropdown2 user={user} />;
+}
+```
+
+## Props
+
+<auto-type-table
+  path="../../registry/blocks/user-dropdown/user-dropdown-2/index.tsx"
+  name="UserDropdown2Props"
+/>

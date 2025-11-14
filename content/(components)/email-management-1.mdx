@@ -3,7 +3,7 @@ title: email-management-1
 description: A simple email management card.
 ---
 
-import { MockEmails } from "@/lib/mock";
+import { MockUser } from "@/lib/mock";
 import EmailManagement1 from "@/registry/blocks/email-management/email-management-1";
 
 <div className="not-prose">
@@ -12,18 +12,20 @@ import EmailManagement1 from "@/registry/blocks/email-management/email-managemen
       <EmailManagement1 />
     </SignedIn>
     <SignedOut>
-      <EmailManagement1 emails={MockEmails} />
+      <EmailManagement1 user={MockUser} />
     </SignedOut>
   </ComponentContainer>
 </div>
 
-#### Installation
+## Installation
 
 ```npm
 npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/email-management-1.json
 ```
 
-#### Usage
+## Usage
+
+### Basic
 
 ```tsx
 import EmailManagement1 from "@/components/email-management-1";
@@ -33,6 +35,51 @@ import EmailManagement1 from "@/components/email-management-1";
 <EmailManagement1 />
 ```
 
-#### Props
+### With Manual Fetching
 
-<auto-type-table path="../../registry/blocks/email-management/email-management-1/index.tsx" name="EmailManagement1Props" />
+#### Server
+
+```tsx title="page.tsx"
+import EmailManagement1 from "@/components/email-management-1";
+import { formatUser } from "@/lib/format-user";
+import { currentUser } from "@clerk/nextjs/server";
+
+export default async function Page() {
+  const user = await currentUser();
+
+  if (!user) return;
+
+  return <EmailManagement1 user={formatUser(user)} />;
+}
+```
+
+#### Client
+
+```tsx title="page.tsx"
+"use client";
+
+import EmailManagement1 from "@/components/email-management-1";
+import { formatUser } from "@/lib/format-user";
+import { useUser } from "@clerk/nextjs";
+
+import { Spinner } from "@/components/ui/spinner";
+
+export default function Page() {
+  const { user, isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return <Spinner />;
+  }
+
+  if (!user) return;
+
+  return <EmailManagement1 user={formatUser(user)} />;
+}
+```
+
+## Props
+
+<auto-type-table
+  path="../../registry/blocks/email-management/email-management-1/index.tsx"
+  name="EmailManagement1Props"
+/>
