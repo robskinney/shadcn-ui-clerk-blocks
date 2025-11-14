@@ -39,6 +39,7 @@ export function EmailActionsDropdown({
   handleRefresh: () => void;
 }) {
   const { user } = useUser();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showRemoveDialog, setShowRemoveDialog] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -50,7 +51,9 @@ export function EmailActionsDropdown({
       try {
         await deleteEmailAddress(emailId);
         handleRefresh();
+
         toast.success("Email removed successfully.");
+        setShowRemoveDialog(false);
       } catch (err) {
         if (err instanceof Error) {
           toast.error(err.message);
@@ -71,6 +74,7 @@ export function EmailActionsDropdown({
       try {
         await setEmailPrimary(emailId);
         handleRefresh();
+
         toast.success("Email updated successfully.");
       } catch (err) {
         if (err instanceof Error) {
@@ -86,7 +90,11 @@ export function EmailActionsDropdown({
 
   return (
     <>
-      <DropdownMenu modal={false}>
+      <DropdownMenu
+        modal={false}
+        open={dropdownOpen}
+        onOpenChange={setDropdownOpen}
+      >
         <DropdownMenuTrigger asChild>
           <Button variant="outline" aria-label="Open menu" size="icon-sm">
             <MoreHorizontalIcon />
@@ -105,7 +113,7 @@ export function EmailActionsDropdown({
             <DropdownMenuItem
               variant="destructive"
               disabled={isPrimary || isLinked}
-              onSelect={() => setShowRemoveDialog(true)}
+              onClick={() => setShowRemoveDialog(true)}
             >
               Remove email
             </DropdownMenuItem>
@@ -113,7 +121,7 @@ export function EmailActionsDropdown({
         </DropdownMenuContent>
       </DropdownMenu>
       <AlertDialog open={showRemoveDialog} onOpenChange={setShowRemoveDialog}>
-        <AlertDialogContent>
+        <AlertDialogContent aria-describedby="A popup requesting confirmation on removal of an email address.">
           <AlertDialogHeader>
             <AlertDialogTitle>Remove this email address?</AlertDialogTitle>
             <AlertDialogDescription>

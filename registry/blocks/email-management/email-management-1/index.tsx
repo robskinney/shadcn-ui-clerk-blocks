@@ -25,6 +25,9 @@ import { User } from "@clerk/backend";
 import { formatUserEmails } from "./utils";
 import { useUser } from "@clerk/nextjs";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FormattedEmailAddress } from "./types";
 
 export type EmailManagement1Props = {
   /**
@@ -36,17 +39,28 @@ export type EmailManagement1Props = {
 export default function EmailManagement1({
   user: propUser,
 }: EmailManagement1Props) {
+  const router = useRouter();
+
   const { user: hookUser, isLoaded } = !propUser
     ? useUser()
     : { user: null, isLoaded: true };
 
   const user = propUser || hookUser;
 
-  const emails = formatUserEmails(user!);
+  const [emails, setEmails] = useState<FormattedEmailAddress[]>([]);
 
-  function handleRefresh() {
+  useEffect(() => {
+    if (user && isLoaded) {
+      setEmails(formatUserEmails(user));
+    }
+  }, [user, isLoaded]);
+
+  async function handleRefresh() {
     if (hookUser) {
-      hookUser.reload();
+      await hookUser.reload();
+      setEmails(formatUserEmails(hookUser));
+    } else {
+      router.refresh();
     }
   }
 

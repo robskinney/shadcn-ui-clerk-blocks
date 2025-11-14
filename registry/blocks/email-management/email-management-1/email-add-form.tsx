@@ -56,8 +56,9 @@ export function EmailAddForm({ handleRefresh }: { handleRefresh: () => void }) {
       try {
         await createEmailAddress(data);
         handleRefresh();
-        setShowAddDialog(false);
+
         toast.success("Email created successfully.");
+        setShowAddDialog(false);
       } catch (err) {
         if (err instanceof Error) {
           toast.error(err.message);
@@ -82,7 +83,10 @@ export function EmailAddForm({ handleRefresh }: { handleRefresh: () => void }) {
           Add email
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent
+        className="sm:max-w-[425px]"
+        aria-describedby="A popup form requesting information on an email address to add."
+      >
         <DialogHeader>
           <DialogTitle>Add a new email address</DialogTitle>
         </DialogHeader>
