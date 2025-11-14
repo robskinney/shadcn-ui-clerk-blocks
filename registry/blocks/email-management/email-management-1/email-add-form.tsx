@@ -35,7 +35,7 @@ const emailAddFormSchema = z.object({
 
 export type OrganizationCreateFormValues = z.infer<typeof emailAddFormSchema>;
 
-export function EmailAddForm() {
+export function EmailAddForm({ handleRefresh }: { handleRefresh: () => void }) {
   const { user } = useUser();
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -55,8 +55,8 @@ export function EmailAddForm() {
       setLoading(true);
       try {
         await createEmailAddress(data);
+        handleRefresh();
         setShowAddDialog(false);
-        user.reload();
         toast.success("Email created successfully.");
       } catch (err) {
         if (err instanceof Error) {

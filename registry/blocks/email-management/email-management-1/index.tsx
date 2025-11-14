@@ -55,7 +55,7 @@ export default function EmailManagement1({
       <CardContent className="flex flex-col gap-y-4 p-5">
         <CardTitle className="flex flex-row justify-between items-center gap-3">
           <h1>Email Addresses</h1>
-          <EmailAddForm />
+          <EmailAddForm handleRefresh={handleRefresh} />
         </CardTitle>
         <ScrollArea>
           <Table className="mb-3">
