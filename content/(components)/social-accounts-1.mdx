@@ -4,6 +4,7 @@ description: A simple external account management card.
 ---
 
 import SocialAccounts1 from "@/registry/blocks/social-accounts/social-accounts-1";
+import OfflineSocialAccounts1 from "@/components/offline/offline-social-accounts-1";
 
 <div className="not-prose">
   <ComponentContainer>
@@ -13,7 +14,12 @@ import SocialAccounts1 from "@/registry/blocks/social-accounts/social-accounts-1
         redirectUrl="/social-accounts-1"
       />
     </SignedIn>
-    <SignedOut>Must be signed in to preview this component.</SignedOut>
+    <SignedOut>
+      <OfflineSocialAccounts1
+        enabledStrategies={["oauth_google", "oauth_microsoft"]}
+        redirectUrl="/social-accounts-1"
+      />
+    </SignedOut>
   </ComponentContainer>
 </div>
 
