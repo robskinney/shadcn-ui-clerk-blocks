@@ -44,6 +44,12 @@ export default function EmailManagement1({
 
   const emails = formatUserEmails(user!);
 
+  function handleRefresh() {
+    if (hookUser) {
+      hookUser.reload();
+    }
+  }
+
   return (
     <Card className="w-full p-3 transition-all duration-300 ease-out">
       <CardContent className="flex flex-col gap-y-4 p-5">
@@ -123,6 +129,7 @@ export default function EmailManagement1({
                         emailId={e.id!}
                         isPrimary={e.isPrimary!}
                         isLinked={!!(e.linkedTo && e.linkedTo.length)}
+                        handleRefresh={handleRefresh}
                       />
                     </TableCell>
                   </TableRow>

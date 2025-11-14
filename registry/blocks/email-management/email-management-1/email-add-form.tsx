@@ -26,7 +26,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { createEmailAddress } from "./actions";
 import { Spinner } from "@/components/ui/spinner";
-import { useAuth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 
 const emailAddFormSchema = z.object({
   email: z.email(),
@@ -36,7 +36,7 @@ const emailAddFormSchema = z.object({
 export type OrganizationCreateFormValues = z.infer<typeof emailAddFormSchema>;
 
 export function EmailAddForm() {
-  const { isSignedIn } = useAuth();
+  const { user } = useUser();
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -49,13 +49,14 @@ export function EmailAddForm() {
   });
 
   async function handleAdd(data: OrganizationCreateFormValues) {
-    if (!isSignedIn) {
+    if (!user) {
       toast.warning("You must be logged in to use this functionality.");
     } else {
       setLoading(true);
       try {
         await createEmailAddress(data);
         setShowAddDialog(false);
+        user.reload();
         toast.success("Email created successfully.");
       } catch (err) {
         if (err instanceof Error) {

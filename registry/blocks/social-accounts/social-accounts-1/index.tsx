@@ -48,8 +48,6 @@ export default function SocialAccounts1({
 
   const { user, isLoaded } = useUser();
 
-  console.log(user);
-
   const [linkingProvider, setLinkingProvider] = useState<OAuthStrategy | null>(
     null
   );

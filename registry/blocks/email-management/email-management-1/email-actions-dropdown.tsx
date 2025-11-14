@@ -24,29 +24,32 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
-import { useAuth } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 import { deleteEmailAddress, setEmailPrimary } from "./actions";
 
 export function EmailActionsDropdown({
   emailId,
   isPrimary,
   isLinked,
+  handleRefresh,
 }: {
   emailId: string;
   isPrimary: boolean;
   isLinked: boolean;
+  handleRefresh: () => void;
 }) {
-  const { isSignedIn } = useAuth();
+  const { user } = useUser();
   const [showRemoveDialog, setShowRemoveDialog] = useState(false);
   const [loading, setLoading] = useState(false);
 
   async function handleRemove() {
-    if (!isSignedIn) {
+    if (!user) {
       toast.warning("You must be logged in to use this functionality.");
     } else {
       setLoading(true);
       try {
         await deleteEmailAddress(emailId);
+        handleRefresh();
         toast.success("Email removed successfully.");
       } catch (err) {
         if (err instanceof Error) {
@@ -61,12 +64,13 @@ export function EmailActionsDropdown({
   }
 
   async function handleSetPrimary() {
-    if (!isSignedIn) {
+    if (!user) {
       toast.warning("You must be logged in to use this functionality.");
     } else {
       setLoading(true);
       try {
         await setEmailPrimary(emailId);
+        handleRefresh();
         toast.success("Email updated successfully.");
       } catch (err) {
         if (err instanceof Error) {
