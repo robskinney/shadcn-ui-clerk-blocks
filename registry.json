@@ -314,6 +314,7 @@
         },
         {
           "path": "registry/blocks/sign-in/sign-in-2/index.tsx",
+          "target": "components/sign-in-2/index.tsx",
           "type": "registry:component"
         },
         {
@@ -357,8 +358,13 @@
           "type": "registry:component"
         },
         {
+          "path": "registry/blocks/sign-up/sign-up-1/_components/steps/sign-up-continue.tsx",
+          "target": "components/sign-up-1/_components/steps/sign-up-continue.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "registry/blocks/sign-up/sign-up-1/_components/steps/sign-up-start.tsx",
-          "target": "components/sign-up-1/_components/sign-up-start.tsx",
+          "target": "components/sign-up-1/_components/steps/sign-up-start.tsx",
           "type": "registry:component"
         },
         {
@@ -383,6 +389,7 @@
         },
         {
           "path": "registry/blocks/sign-up/sign-up-1/index.tsx",
+          "target": "components/sign-up-1/index.tsx",
           "type": "registry:component"
         },
         {

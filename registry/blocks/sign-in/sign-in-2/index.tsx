@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@clerk/nextjs";
 import SignInStart from "@/registry/blocks/sign-in/sign-in-2/_components/steps/sign-in-start";
 import SignInChooseStrategy from "@/registry/blocks/sign-in/sign-in-2/_components/steps/sign-in-choose-strategy";
-import SignInVerifications from "@/registry/blocks/sign-in/sign-in-2/_components/steps/sign-in-verifications";
+import SignInVerifications from "./_components/steps/sign-in-verifications";
 import { SignInRequiredFields } from "@/registry/blocks/sign-in/sign-in-2/_components/types";
 
 export type SignIn2Props = {
@@ -35,17 +35,13 @@ export type SignIn2Props = {
 };
 
 export default function SignIn2({
-  requiredFields: requiredFieldsProp = ["emailAddress", "password"],
-  enabledOAuthStrategies: enabledOAuthStrategiesProp,
+  requiredFields = ["emailAddress", "password"],
+  enabledOAuthStrategies,
   signUpUrl = "/sign-up",
   exampleMode,
 }: SignIn2Props) {
   const pathname = usePathname();
   const { isLoaded } = useAuth();
-
-  // Determine final values based on autoConfig
-  let requiredFields = requiredFieldsProp;
-  let enabledOAuthStrategies = enabledOAuthStrategiesProp;
 
   // Show loading state when autoConfig is enabled and data is loading
   if (!isLoaded) {

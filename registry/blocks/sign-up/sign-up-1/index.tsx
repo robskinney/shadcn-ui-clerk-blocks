@@ -7,9 +7,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useAuth } from "@clerk/nextjs";
 import { SignUpRequiredFields } from "./_components/types";
 import { OAuthStrategy } from "@clerk/types";
-import SignUpVerifications from "@/registry/blocks/sign-up/sign-up-1/_components/steps/sign-up-verifications";
-import SignUpContinue from "@/registry/blocks/sign-up/sign-up-1/_components/steps/sign-up-continue";
-import SignUpStart from "@/registry/blocks/sign-up/sign-up-1/_components/steps/sign-up-start";
+import SignUpVerifications from "./_components/steps/sign-up-verifications";
+import SignUpContinue from "./_components/steps/sign-up-continue";
+import SignUpStart from "./_components/steps/sign-up-start";
 
 export type SignUp1Props = {
   /**
