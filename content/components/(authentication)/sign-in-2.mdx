@@ -1,0 +1,50 @@
+---
+title: sign-in-2
+description: A user login card.
+---
+
+import SignIn2 from "@/registry/blocks/sign-in/sign-in-2";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <SignIn2
+        enabledOAuthStrategies={["oauth_google", "oauth_microsoft"]}
+        signUpUrl="/components/sign-up-1"
+        autoConfig
+        exampleMode
+      />
+    </SignedIn>
+    <SignedOut>
+      <SignIn2
+        enabledOAuthStrategies={["oauth_google", "oauth_microsoft", "oauth_github"]}
+        signUpUrl="/components/sign-up-1"
+        autoConfig
+      />
+    </SignedOut>
+
+  </ComponentContainer>
+</div>
+
+## Installation
+
+```npm
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/sign-in-2.json
+```
+
+## Usage
+
+```tsx
+import SignIn2 from "@/components/sign-in-2";
+```
+
+```tsx
+<SignIn2 />
+```
+
+## Props
+
+<auto-type-table
+  path="../../../registry/blocks/sign-in/sign-in-2/index.tsx"
+  name="SignIn2Props"
+/>

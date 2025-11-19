@@ -1,18 +1,18 @@
 ---
-title: profile-form-1
-description: An editable user profile form.
+title: user-dropdown-2
+description: Another user dropdown best used in a sidebar.
 ---
 
 import { MockUser } from "@/lib/mock";
-import ProfileForm1 from "@/registry/blocks/profile-form/profile-form-1";
+import UserDropdown2 from "@/registry/blocks/user-dropdown/user-dropdown-2";
 
 <div className="not-prose">
   <ComponentContainer>
     <SignedIn>
-      <ProfileForm1 />
+      <UserDropdown2 />
     </SignedIn>
     <SignedOut>
-      <ProfileForm1 user={MockUser} />
+      <UserDropdown2 user={MockUser} />
     </SignedOut>
   </ComponentContainer>
 </div>
@@ -20,7 +20,7 @@ import ProfileForm1 from "@/registry/blocks/profile-form/profile-form-1";
 ## Installation
 
 ```npm
-npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/profile-form-1.json
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/user-dropdown-2.json
 ```
 
 ## Usage
@@ -28,11 +28,11 @@ npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/profile-form-1
 ### Basic
 
 ```tsx
-import ProfileForm1 from "@/components/profile-form-1";
+import UserDropdown2 from "@/components/user-dropdown-2";
 ```
 
 ```tsx
-<ProfileForm1 />
+<UserDropdown2 />
 ```
 
 ### With Manual Fetching
@@ -40,7 +40,7 @@ import ProfileForm1 from "@/components/profile-form-1";
 #### Server
 
 ```tsx title="page.tsx"
-import ProfileForm1 from "@/components/profile-form-1";
+import UserDropdown2 from "@/components/user-dropdown-2";
 import { formatUser } from "@/lib/format-user";
 import { currentUser } from "@clerk/nextjs/server";
 
@@ -49,7 +49,7 @@ export default async function Page() {
 
   if (!user) return;
 
-  return <ProfileForm1 user={formatUser(user)} />;
+  return <UserDropdown2 user={formatUser(user)} />;
 }
 ```
 
@@ -58,8 +58,7 @@ export default async function Page() {
 ```tsx title="page.tsx"
 "use client";
 
-import ProfileForm1 from "@/components/profile-form-1";
-import { formatUser } from "@/lib/format-user";
+import UserDropdown2 from "@/components/user-dropdown-2";
 import { useUser } from "@clerk/nextjs";
 
 import { Spinner } from "@/components/ui/spinner";
@@ -73,13 +72,13 @@ export default function Page() {
 
   if (!user) return;
 
-  return <ProfileForm1 user={formatUser(user)} />;
+  return <UserDropdown2 user={user} />;
 }
 ```
 
 ## Props
 
 <auto-type-table
-  path="../../registry/blocks/profile-form/profile-form-1/index.tsx"
-  name="ProfileForm1Props"
+  path="../../../registry/blocks/user-dropdown/user-dropdown-2/index.tsx"
+  name="UserDropdown2Props"
 />

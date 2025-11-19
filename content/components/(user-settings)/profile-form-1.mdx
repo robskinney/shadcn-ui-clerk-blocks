@@ -1,18 +1,18 @@
 ---
-title: email-management-1
-description: A simple email management card.
+title: profile-form-1
+description: An editable user profile form.
 ---
 
 import { MockUser } from "@/lib/mock";
-import EmailManagement1 from "@/registry/blocks/email-management/email-management-1";
+import ProfileForm1 from "@/registry/blocks/profile-form/profile-form-1";
 
 <div className="not-prose">
   <ComponentContainer>
     <SignedIn>
-      <EmailManagement1 />
+      <ProfileForm1 />
     </SignedIn>
     <SignedOut>
-      <EmailManagement1 user={MockUser} />
+      <ProfileForm1 user={MockUser} />
     </SignedOut>
   </ComponentContainer>
 </div>
@@ -20,7 +20,7 @@ import EmailManagement1 from "@/registry/blocks/email-management/email-managemen
 ## Installation
 
 ```npm
-npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/email-management-1.json
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/profile-form-1.json
 ```
 
 ## Usage
@@ -28,11 +28,11 @@ npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/email-manageme
 ### Basic
 
 ```tsx
-import EmailManagement1 from "@/components/email-management-1";
+import ProfileForm1 from "@/components/profile-form-1";
 ```
 
 ```tsx
-<EmailManagement1 />
+<ProfileForm1 />
 ```
 
 ### With Manual Fetching
@@ -40,7 +40,7 @@ import EmailManagement1 from "@/components/email-management-1";
 #### Server
 
 ```tsx title="page.tsx"
-import EmailManagement1 from "@/components/email-management-1";
+import ProfileForm1 from "@/components/profile-form-1";
 import { formatUser } from "@/lib/format-user";
 import { currentUser } from "@clerk/nextjs/server";
 
@@ -49,7 +49,7 @@ export default async function Page() {
 
   if (!user) return;
 
-  return <EmailManagement1 user={formatUser(user)} />;
+  return <ProfileForm1 user={formatUser(user)} />;
 }
 ```
 
@@ -58,7 +58,7 @@ export default async function Page() {
 ```tsx title="page.tsx"
 "use client";
 
-import EmailManagement1 from "@/components/email-management-1";
+import ProfileForm1 from "@/components/profile-form-1";
 import { formatUser } from "@/lib/format-user";
 import { useUser } from "@clerk/nextjs";
 
@@ -73,13 +73,13 @@ export default function Page() {
 
   if (!user) return;
 
-  return <EmailManagement1 user={formatUser(user)} />;
+  return <ProfileForm1 user={formatUser(user)} />;
 }
 ```
 
 ## Props
 
 <auto-type-table
-  path="../../registry/blocks/email-management/email-management-1/index.tsx"
-  name="EmailManagement1Props"
+  path="../../../registry/blocks/profile-form/profile-form-1/index.tsx"
+  name="ProfileForm1Props"
 />

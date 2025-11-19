@@ -11,10 +11,10 @@
     "registry:build": "shadcn build"
   },
   "dependencies": {
-    "@clerk/backend": "^2.21.0",
-    "@clerk/elements": "^0.23.81",
-    "@clerk/nextjs": "^6.35.0",
-    "@clerk/types": "^4.99.0",
+    "@clerk/backend": "^2.23.0",
+    "@clerk/elements": "^0.23.83",
+    "@clerk/nextjs": "^6.35.2",
+    "@clerk/types": "^4.101.0",
     "@hookform/resolvers": "^5.2.2",
     "@icons-pack/react-simple-icons": "^13.8.0",
     "@radix-ui/react-alert-dialog": "^1.1.15",
@@ -38,7 +38,6 @@
     "@vercel/analytics": "^1.5.0",
     "browser-image-compression": "^2.0.2",
     "class-variance-authority": "^0.7.1",
-    "clerk": "^0.8.3",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "fumadocs-core": "^16.0.10",

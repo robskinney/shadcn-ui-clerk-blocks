@@ -132,8 +132,8 @@ export default function ProfileForm1({ user: propUser }: ProfileForm1Props) {
   }
 
   return (
-    <Card className="w-full sm:w-96">
-      <CardContent>
+    <Card className="w-full">
+      <CardContent className="mx-auto w-full lg:max-w-4/5 xl:max-w-3/4">
         <form
           id="form-profile-update-1"
           className="flex flex-col gap-y-8 px-3 sm:px-5 py-5"

@@ -15,14 +15,18 @@ export async function createEmailAddress(data: OrganizationCreateFormValues) {
   const client = await clerkClient();
 
   try {
-    await client.emailAddresses.createEmailAddress({
+    const res = await client.emailAddresses.createEmailAddress({
       userId,
       emailAddress: data.email,
       primary: data.isPrimary,
     });
 
-    revalidatePath("/");
-    return { success: true };
+    return {
+      id: res.id,
+      emailAddress: res.emailAddress,
+      isPrimary: data.isPrimary,
+      isVerified: false,
+    };
   } catch (err) {
     if (isClerkAPIResponseError(err)) {
       throw new Error(err.errors[0].longMessage);

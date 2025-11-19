@@ -1,0 +1,15 @@
+{
+  "icon": "Box",
+  "title": "Components",
+  "description": "A registry of functional, reusable shadcn/ui blocks to be used with Clerk Authentication.",
+  "pages": [
+    "playground",
+    "--- Authentication ---",
+    "...(authentication)",
+    "--- User ---",
+    "...(user)",
+    "--- User Settings ---",
+    "...(user-settings)"
+  ],
+  "defaultOpen": true
+}

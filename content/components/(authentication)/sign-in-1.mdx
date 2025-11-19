@@ -8,11 +8,21 @@ import SignIn1 from "@/registry/blocks/sign-in/sign-in-1";
 <div className="not-prose">
   <ComponentContainer>
     <SignedIn>
-      <SignIn1 exampleMode={true} signUpUrl="/sign-up-1" />
+      <SignIn1
+        enabledOAuthStrategies={["oauth_google", "oauth_microsoft"]}
+        signUpUrl="/components/sign-up-1"
+        autoConfig
+        exampleMode
+      />
     </SignedIn>
     <SignedOut>
-      <SignIn1 signUpUrl="/sign-up-1" />
+      <SignIn1
+        enabledOAuthStrategies={["oauth_google", "oauth_microsoft"]}
+        signUpUrl="/components/sign-up-1"
+        autoConfig
+      />
     </SignedOut>
+
   </ComponentContainer>
 </div>
 
@@ -23,6 +33,8 @@ npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/sign-in-1.json
 ```
 
 ## Usage
+
+### Basic
 
 ```tsx
 import SignIn1 from "@/components/sign-in-1";
@@ -35,6 +47,6 @@ import SignIn1 from "@/components/sign-in-1";
 ## Props
 
 <auto-type-table
-  path="../../registry/blocks/sign-in/sign-in-1.tsx"
+  path="../../../registry/blocks/sign-in/sign-in-1/index.tsx"
   name="SignIn1Props"
 />

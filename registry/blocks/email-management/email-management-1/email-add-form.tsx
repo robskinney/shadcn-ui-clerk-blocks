@@ -27,6 +27,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { createEmailAddress } from "./actions";
 import { Spinner } from "@/components/ui/spinner";
 import { useUser } from "@clerk/nextjs";
+import { FormattedEmailAddress } from "./types";
 
 const emailAddFormSchema = z.object({
   email: z.email(),
@@ -35,7 +36,11 @@ const emailAddFormSchema = z.object({
 
 export type OrganizationCreateFormValues = z.infer<typeof emailAddFormSchema>;
 
-export function EmailAddForm({ handleRefresh }: { handleRefresh: () => void }) {
+export function EmailAddForm({
+  setEmails,
+}: {
+  setEmails: React.Dispatch<React.SetStateAction<FormattedEmailAddress[]>>;
+}) {
   const { user } = useUser();
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -54,8 +59,16 @@ export function EmailAddForm({ handleRefresh }: { handleRefresh: () => void }) {
     } else {
       setLoading(true);
       try {
-        await createEmailAddress(data);
-        handleRefresh();
+        const newEmail = await createEmailAddress(data);
+        setEmails((prev) => [
+          ...prev,
+          {
+            id: newEmail.id,
+            emailAddress: newEmail.emailAddress,
+            isPrimary: data.isPrimary,
+            isVerified: false,
+          },
+        ]);
 
         toast.success("Email created successfully.");
         setShowAddDialog(false);

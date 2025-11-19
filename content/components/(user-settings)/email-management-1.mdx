@@ -1,18 +1,18 @@
 ---
-title: user-dropdown-2
-description: Another user dropdown best used in a sidebar.
+title: email-management-1
+description: A simple email management card.
 ---
 
 import { MockUser } from "@/lib/mock";
-import UserDropdown2 from "@/registry/blocks/user-dropdown/user-dropdown-2";
+import EmailManagement1 from "@/registry/blocks/email-management/email-management-1";
 
 <div className="not-prose">
   <ComponentContainer>
     <SignedIn>
-      <UserDropdown2 />
+      <EmailManagement1 />
     </SignedIn>
     <SignedOut>
-      <UserDropdown2 user={MockUser} />
+      <EmailManagement1 user={MockUser} />
     </SignedOut>
   </ComponentContainer>
 </div>
@@ -20,7 +20,7 @@ import UserDropdown2 from "@/registry/blocks/user-dropdown/user-dropdown-2";
 ## Installation
 
 ```npm
-npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/user-dropdown-2.json
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/email-management-1.json
 ```
 
 ## Usage
@@ -28,11 +28,11 @@ npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/user-dropdown-
 ### Basic
 
 ```tsx
-import UserDropdown2 from "@/components/user-dropdown-2";
+import EmailManagement1 from "@/components/email-management-1";
 ```
 
 ```tsx
-<UserDropdown2 />
+<EmailManagement1 />
 ```
 
 ### With Manual Fetching
@@ -40,7 +40,7 @@ import UserDropdown2 from "@/components/user-dropdown-2";
 #### Server
 
 ```tsx title="page.tsx"
-import UserDropdown2 from "@/components/user-dropdown-2";
+import EmailManagement1 from "@/components/email-management-1";
 import { formatUser } from "@/lib/format-user";
 import { currentUser } from "@clerk/nextjs/server";
 
@@ -49,7 +49,7 @@ export default async function Page() {
 
   if (!user) return;
 
-  return <UserDropdown2 user={formatUser(user)} />;
+  return <EmailManagement1 user={formatUser(user)} />;
 }
 ```
 
@@ -58,7 +58,8 @@ export default async function Page() {
 ```tsx title="page.tsx"
 "use client";
 
-import UserDropdown2 from "@/components/user-dropdown-2";
+import EmailManagement1 from "@/components/email-management-1";
+import { formatUser } from "@/lib/format-user";
 import { useUser } from "@clerk/nextjs";
 
 import { Spinner } from "@/components/ui/spinner";
@@ -72,13 +73,13 @@ export default function Page() {
 
   if (!user) return;
 
-  return <UserDropdown2 user={user} />;
+  return <EmailManagement1 user={formatUser(user)} />;
 }
 ```
 
 ## Props
 
 <auto-type-table
-  path="../../registry/blocks/user-dropdown/user-dropdown-2/index.tsx"
-  name="UserDropdown2Props"
+  path="../../../registry/blocks/email-management/email-management-1/index.tsx"
+  name="EmailManagement1Props"
 />

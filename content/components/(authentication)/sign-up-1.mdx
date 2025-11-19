@@ -8,10 +8,10 @@ import SignUp1 from "@/registry/blocks/sign-up/sign-up-1";
 <div className="not-prose">
   <ComponentContainer>
     <SignedIn>
-      <SignUp1 exampleMode={true} signInUrl="/sign-in-1" />
+      <SignUp1 signInUrl="/components/sign-in-1" exampleMode />
     </SignedIn>
     <SignedOut>
-      <SignUp1 signInUrl="/sign-in-1" />
+      <SignUp1 signInUrl="/components/sign-in-1" />
     </SignedOut>
   </ComponentContainer>
 </div>
@@ -35,6 +35,6 @@ import SignUp1 from "@/components/sign-up-1";
 ## Props
 
 <auto-type-table
-  path="../../registry/blocks/sign-up/sign-up-1.tsx"
+  path="../../../registry/blocks/sign-up/sign-up-1/index.tsx"
   name="SignUp1Props"
 />

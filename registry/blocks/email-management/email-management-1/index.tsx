@@ -25,7 +25,6 @@ import { User } from "@clerk/backend";
 import { formatUserEmails } from "./utils";
 import { useUser } from "@clerk/nextjs";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FormattedEmailAddress } from "./types";
 
@@ -39,8 +38,6 @@ export type EmailManagement1Props = {
 export default function EmailManagement1({
   user: propUser,
 }: EmailManagement1Props) {
-  const router = useRouter();
-
   const { user: hookUser, isLoaded } = !propUser
     ? useUser()
     : { user: null, isLoaded: true };
@@ -55,21 +52,12 @@ export default function EmailManagement1({
     }
   }, [user, isLoaded]);
 
-  async function handleRefresh() {
-    if (hookUser) {
-      await hookUser.reload();
-      setEmails(formatUserEmails(hookUser));
-    } else {
-      router.refresh();
-    }
-  }
-
   return (
     <Card className="w-full p-3 transition-all duration-300 ease-out">
       <CardContent className="flex flex-col gap-y-4 p-5">
         <CardTitle className="flex flex-row justify-between items-center gap-3">
           <h1>Email Addresses</h1>
-          <EmailAddForm handleRefresh={handleRefresh} />
+          <EmailAddForm setEmails={setEmails} />
         </CardTitle>
         <ScrollArea>
           <Table className="mb-3">
@@ -143,7 +131,7 @@ export default function EmailManagement1({
                         emailId={e.id!}
                         isPrimary={e.isPrimary!}
                         isLinked={!!(e.linkedTo && e.linkedTo.length)}
-                        handleRefresh={handleRefresh}
+                        setEmails={setEmails}
                       />
                     </TableCell>
                   </TableRow>

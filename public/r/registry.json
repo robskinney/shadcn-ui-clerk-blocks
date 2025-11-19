@@ -172,12 +172,157 @@
       "type": "registry:block",
       "title": "Sign In - 1",
       "description": "A simple login form.",
-      "registryDependencies": ["button", "card", "input", "label", "spinner"],
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label",
+        "spinner",
+        "skeleton"
+      ],
       "dependencies": ["@clerk/elements", "react-icons"],
       "files": [
         {
-          "path": "registry/blocks/sign-in/sign-in-1.tsx",
+          "path": "registry/blocks/sign-in/sign-in-1/_components/steps/sign-in-verifications/index.tsx",
+          "target": "components/sign-in-1/_components/steps/sign-in-verifications/index.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/_components/steps/sign-in-verifications/sign-in-strategy-email_code.tsx",
+          "target": "components/sign-in-1/_components/steps/sign-in-verifications/sign-in-strategy-email_code.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/_components/steps/sign-in-verifications/sign-in-strategy-email_link.tsx",
+          "target": "components/sign-in-1/_components/steps/sign-in-verifications/sign-in-strategy-email_link.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/_components/steps/sign-in-verifications/sign-in-strategy-password.tsx",
+          "target": "components/sign-in-1/_components/steps/sign-in-verifications/sign-in-strategy-password.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/_components/steps/sign-in-choose-strategy.tsx",
+          "target": "components/sign-in-1/_components/sign-in-choose-strategy.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/_components/steps/sign-in-start.tsx",
+          "target": "components/sign-in-1/_components/sign-in-start.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/_components/auth-field.tsx",
+          "target": "components/sign-in-1/_components/auth-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/_components/auth-section-separator.tsx",
+          "target": "components/sign-in-1/_components/auth-section-separator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/_components/oauth-strategy-list.tsx",
+          "target": "components/sign-in-1/_components/oauth-strategy-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/_components/types.ts",
+          "target": "components/sign-in-1/_components/types.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-1/index.tsx",
+          "target": "components/sign-in-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/format-auth-fields.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "registry/lib/format-external-accounts.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "sign-in-2",
+      "type": "registry:block",
+      "title": "Sign In - 2",
+      "description": "A simple login form.",
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label",
+        "spinner",
+        "skeleton"
+      ],
+      "dependencies": ["@clerk/elements", "react-icons"],
+      "files": [
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/steps/sign-in-verifications/index.tsx",
+          "target": "components/sign-in-2/_components/steps/sign-in-verifications/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/steps/sign-in-verifications/sign-in-strategy-email_code.tsx",
+          "target": "components/sign-in-2/_components/steps/sign-in-verifications/sign-in-strategy-email_code.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/steps/sign-in-verifications/sign-in-strategy-email_link.tsx",
+          "target": "components/sign-in-2/_components/steps/sign-in-verifications/sign-in-strategy-email_link.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/steps/sign-in-verifications/sign-in-strategy-password.tsx",
+          "target": "components/sign-in-2/_components/steps/sign-in-verifications/sign-in-strategy-password.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/steps/sign-in-choose-strategy.tsx",
+          "target": "components/sign-in-2/_components/sign-in-choose-strategy.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/steps/sign-in-start.tsx",
+          "target": "components/sign-in-2/_components/sign-in-start.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/auth-field.tsx",
+          "target": "components/sign-in-2/_components/auth-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/auth-section-separator.tsx",
+          "target": "components/sign-in-2/_components/auth-section-separator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/oauth-strategy-list.tsx",
+          "target": "components/sign-in-2/_components/oauth-strategy-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/_components/types.ts",
+          "target": "components/sign-in-2/_components/types.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/sign-in/sign-in-2/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/format-auth-fields.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "registry/lib/format-external-accounts.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -187,11 +332,66 @@
       "title": "Sign Up - 1",
       "description": "A simple registration form.",
       "dependencies": ["@clerk/elements"],
-      "registryDependencies": ["button", "card", "input", "label", "spinner"],
+      "registryDependencies": [
+        "button",
+        "card",
+        "input",
+        "label",
+        "spinner",
+        "skeleton"
+      ],
       "files": [
         {
-          "path": "registry/blocks/sign-up/sign-up-1.tsx",
+          "path": "registry/blocks/sign-up/sign-up-1/_components/steps/sign-up-verifications/index.tsx",
+          "target": "components/sign-up-1/_components/steps/sign-up-verifications/index.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-up/sign-up-1/_components/steps/sign-up-verifications/sign-up-strategy-email_code.tsx",
+          "target": "components/sign-up-1/_components/steps/sign-up-verifications/sign-up-strategy-email_code.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-up/sign-up-1/_components/steps/sign-up-verifications/sign-up-strategy-email_link.tsx",
+          "target": "components/sign-up-1/_components/steps/sign-up-verifications/sign-up-strategy-email_link.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-up/sign-up-1/_components/steps/sign-up-start.tsx",
+          "target": "components/sign-up-1/_components/sign-up-start.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-up/sign-up-1/_components/auth-field.tsx",
+          "target": "components/sign-up-1/_components/auth-field.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-up/sign-up-1/_components/auth-section-separator.tsx",
+          "target": "components/sign-up-1/_components/auth-section-separator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-up/sign-up-1/_components/oauth-strategy-list.tsx",
+          "target": "components/sign-up-1/_components/oauth-strategy-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/sign-up/sign-up-1/_components/types.ts",
+          "target": "components/sign-up-1/_components/types.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/sign-up/sign-up-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/format-auth-fields.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "registry/lib/format-external-accounts.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -251,7 +451,7 @@
       "files": [
         {
           "path": "registry/blocks/user-dropdown/user-dropdown-1/index.tsx",
-          "target": "components/user-dropdown-1/index.tsx",
+          "target": "components/user-dropdown-1.tsx",
           "type": "registry:component"
         }
       ]
@@ -266,7 +466,7 @@
       "files": [
         {
           "path": "registry/blocks/user-dropdown/user-dropdown-2/index.tsx",
-          "target": "components/user-dropdown-2/index.tsx",
+          "target": "components/user-dropdown-2.tsx",
           "type": "registry:component"
         }
       ]

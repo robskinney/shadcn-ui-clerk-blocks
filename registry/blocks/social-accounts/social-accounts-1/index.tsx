@@ -18,7 +18,7 @@ import { SocialAccountActionsDropdown } from "./actions-dropdown";
 import { useReverification, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { VerificationComponent } from "@/registry/blocks/verification-component";
 import {
   isClerkRuntimeError,
@@ -51,14 +51,6 @@ export default function SocialAccounts1({
   const [linkingProvider, setLinkingProvider] = useState<OAuthStrategy | null>(
     null
   );
-
-  const linkedAccounts = useMemo(() => {
-    if (!user?.externalAccounts) return new Map();
-
-    return new Map(
-      user.externalAccounts.map((account) => [account.provider, account])
-    );
-  }, [user]);
 
   const [verificationState, setVerificationState] = useState<
     | {
@@ -98,7 +90,6 @@ export default function SocialAccounts1({
       });
     } catch (e) {
       console.error(e);
-      // console.log(err);
       if (isClerkRuntimeError(e) && isReverificationCancelledError(e)) {
         toast.info("Verification cancelled.");
       } else {
@@ -106,7 +97,6 @@ export default function SocialAccounts1({
       }
     } finally {
       setLinkingProvider(null);
-      // user?.reload();
     }
   };
 
@@ -130,8 +120,12 @@ export default function SocialAccounts1({
                   const providerInfo = getExternalAccount(providerKey);
                   const Icon = providerInfo.icon;
 
-                  const userAccount = linkedAccounts.get(providerInfo.alias);
-                  const isLinked = !!userAccount;
+                  const userAccount = user?.externalAccounts?.find(
+                    (e) => e.provider === providerInfo.alias
+                  );
+
+                  const isLinked =
+                    userAccount?.verification?.status === "verified";
 
                   return (
                     <TableRow key={providerKey}>

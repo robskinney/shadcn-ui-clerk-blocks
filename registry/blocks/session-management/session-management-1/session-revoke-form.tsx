@@ -24,23 +24,26 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
-import { useAuth } from "@clerk/nextjs";
-import { useRouter } from "next/navigation";
+import { useAuth, useSession } from "@clerk/nextjs";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function SessionRevokeForm({ sessionId }: { sessionId: string }) {
-  const router = useRouter();
-  const { isSignedIn } = useAuth();
+  const { signOut } = useAuth();
+  const { session, isLoaded } = useSession();
   const [showRevokeDialog, setShowRevokeDialog] = useState(false);
   const [loading, setLoading] = useState(false);
 
   async function handleRevoke() {
-    if (!isSignedIn) {
+    if (!session) {
       toast.warning("You must be logged in to use this functionality.");
     } else {
       try {
-        await revokeSession(sessionId);
-        toast.success("Session revoked successfully.");
-        router.refresh();
+        if (session.id === sessionId) {
+          signOut();
+        } else {
+          await revokeSession(sessionId);
+          toast.success("Session revoked successfully.");
+        }
       } catch (err) {
         console.error(err);
         toast.error("Failed to revoke session.");
@@ -53,11 +56,16 @@ export function SessionRevokeForm({ sessionId }: { sessionId: string }) {
   return (
     <>
       <DropdownMenu modal={false}>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" aria-label="Open menu" size="icon-sm">
-            <MoreHorizontalIcon />
-          </Button>
-        </DropdownMenuTrigger>
+        {isLoaded ? (
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" aria-label="Open menu" size="icon-sm">
+              <MoreHorizontalIcon />
+            </Button>
+          </DropdownMenuTrigger>
+        ) : (
+          <Skeleton className="size-8 rounded-md ml-auto" />
+        )}
+
         <DropdownMenuContent className="w-40" align="end">
           <DropdownMenuLabel>Session Actions</DropdownMenuLabel>
           <DropdownMenuSeparator />
@@ -65,8 +73,9 @@ export function SessionRevokeForm({ sessionId }: { sessionId: string }) {
             <DropdownMenuItem
               variant="destructive"
               onSelect={() => setShowRevokeDialog(true)}
+              disabled={!isLoaded}
             >
-              Revoke
+              {session && session.id === sessionId ? "Log out" : "Revoke"}
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
@@ -74,7 +83,11 @@ export function SessionRevokeForm({ sessionId }: { sessionId: string }) {
       <AlertDialog open={showRevokeDialog} onOpenChange={setShowRevokeDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Sign out this device?</AlertDialogTitle>
+            <AlertDialogTitle>
+              {session && session.id === sessionId
+                ? "Sign out this device?"
+                : "Revoke this session?"}
+            </AlertDialogTitle>
             <AlertDialogDescription>
               This device will be logged out immediately.
             </AlertDialogDescription>
@@ -83,7 +96,11 @@ export function SessionRevokeForm({ sessionId }: { sessionId: string }) {
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction asChild>
               <Button onClick={handleRevoke} disabled={loading}>
-                {loading ? "Revoking..." : "Confirm"}
+                {loading
+                  ? session && session.id === sessionId
+                    ? "Logging out..."
+                    : "Revoking..."
+                  : "Confirm"}
               </Button>
             </AlertDialogAction>
           </AlertDialogFooter>

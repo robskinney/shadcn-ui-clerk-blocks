@@ -26,17 +26,18 @@ import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import { useUser } from "@clerk/nextjs";
 import { deleteEmailAddress, setEmailPrimary } from "./actions";
+import { FormattedEmailAddress } from "./types";
 
 export function EmailActionsDropdown({
   emailId,
   isPrimary,
   isLinked,
-  handleRefresh,
+  setEmails,
 }: {
   emailId: string;
   isPrimary: boolean;
   isLinked: boolean;
-  handleRefresh: () => void;
+  setEmails: React.Dispatch<React.SetStateAction<FormattedEmailAddress[]>>;
 }) {
   const { user } = useUser();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -50,7 +51,9 @@ export function EmailActionsDropdown({
       setLoading(true);
       try {
         await deleteEmailAddress(emailId);
-        handleRefresh();
+        setEmails((prev) =>
+          prev.filter((e) => (e.id === emailId ? false : true))
+        );
 
         toast.success("Email removed successfully.");
         setShowRemoveDialog(false);
@@ -61,6 +64,7 @@ export function EmailActionsDropdown({
           toast.error("An unknown error occured removing the email.");
         }
       } finally {
+        // handleRefresh();
         setLoading(false);
       }
     }
@@ -73,7 +77,13 @@ export function EmailActionsDropdown({
       setLoading(true);
       try {
         await setEmailPrimary(emailId);
-        handleRefresh();
+        setEmails((prev) =>
+          prev.map((e) =>
+            e.id === emailId
+              ? { ...e, isPrimary: true }
+              : { ...e, isPrimary: false }
+          )
+        );
 
         toast.success("Email updated successfully.");
       } catch (err) {
@@ -83,6 +93,7 @@ export function EmailActionsDropdown({
           toast.error("An unknown error occured updating the email.");
         }
       } finally {
+        // handleRefresh();
         setLoading(false);
       }
     }

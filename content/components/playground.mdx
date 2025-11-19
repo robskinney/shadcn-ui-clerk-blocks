@@ -1,0 +1,176 @@
+---
+title: Playground
+description: An example page showing off all of the available components.
+---
+
+import { MockUser } from "@/lib/mock";
+
+## Authentication
+
+### sign-in-1
+
+import SignIn1 from "@/registry/blocks/sign-in/sign-in-1";
+
+<div className="flex flex-col not-prose gap-4">
+  <ComponentContainer>
+    <SignedIn>
+      <SignIn1
+        enabledOAuthStrategies={["oauth_google", "oauth_microsoft"]}
+        signUpUrl="/components/sign-up-1"
+        exampleMode={true}
+      />
+    </SignedIn>
+    <SignedOut>
+      <SignIn1
+        enabledOAuthStrategies={["oauth_google", "oauth_microsoft"]}
+        signUpUrl="/components/sign-up-1"
+      />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+### sign-in-2
+
+import SignIn2 from "@/registry/blocks/sign-in/sign-in-2";
+
+<div className="flex flex-col not-prose gap-4">
+  <ComponentContainer>
+    <SignedIn>
+      <SignIn2
+        enabledOAuthStrategies={["oauth_google", "oauth_microsoft"]}
+        signUpUrl="/components/sign-up-1"
+        autoConfig
+        exampleMode
+      />
+    </SignedIn>
+    <SignedOut>
+      <SignIn2
+        enabledOAuthStrategies={[
+          "oauth_google",
+          "oauth_microsoft",
+          "oauth_github",
+        ]}
+        signUpUrl="/components/sign-up-1"
+        autoConfig
+      />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+### sign-up-1
+
+import SignUp1 from "@/registry/blocks/sign-up/sign-up-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <SignUp1 exampleMode={true} signInUrl="/components/sign-in-1" />
+    </SignedIn>
+    <SignedOut>
+      <SignUp1 signInUrl="/components/sign-in-1" />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+## User
+
+### user-dropdown-1
+
+import UserDropdown1 from "@/registry/blocks/user-dropdown/user-dropdown-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <UserDropdown1 />
+    </SignedIn>
+    <SignedOut>
+      <UserDropdown1 user={MockUser} />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+### user-dropdown-2
+
+import UserDropdown2 from "@/registry/blocks/user-dropdown/user-dropdown-2";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <UserDropdown2 />
+    </SignedIn>
+    <SignedOut>
+      <UserDropdown2 user={MockUser} />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+## User Settings
+
+### email-management-1
+
+import EmailManagement1 from "@/registry/blocks/email-management/email-management-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <EmailManagement1 />
+    </SignedIn>
+    <SignedOut>
+      <EmailManagement1 user={MockUser} />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+### profile-form-1
+
+import ProfileForm1 from "@/registry/blocks/profile-form/profile-form-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <ProfileForm1 />
+    </SignedIn>
+    <SignedOut>
+      <ProfileForm1 user={MockUser} />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+### session-management-1
+
+import { generateMockSessions } from "@/lib/mock";
+import SessionManagement1 from "@/registry/blocks/session-management/session-management-1";
+import SessionManagement1Inner from "@/registry/blocks/session-management/session-management-1/inner";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <SessionManagement1 />
+    </SignedIn>
+    <SignedOut>
+      <SessionManagement1Inner sessions={generateMockSessions()} />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+### social-accounts-1
+
+import SocialAccounts1 from "@/registry/blocks/social-accounts/social-accounts-1";
+import OfflineSocialAccounts1 from "@/components/offline/offline-social-accounts-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <SocialAccounts1
+        enabledStrategies={["oauth_google", "oauth_microsoft"]}
+        redirectUrl="/social-accounts-1"
+      />
+    </SignedIn>
+    <SignedOut>
+      <OfflineSocialAccounts1
+        enabledStrategies={["oauth_google", "oauth_microsoft"]}
+        redirectUrl="/social-accounts-1"
+      />
+    </SignedOut>
+  </ComponentContainer>
+</div>

@@ -46,13 +46,19 @@ export default function SessionManagement1Inner({
                     )}
 
                     <div className="flex flex-col w-full text-start font-medium gap-0.5">
-                      <div className="flex flex-row w-full gap-1.5 items-center justify-start">
+                      <div className="flex flex-row w-full gap-1 items-center justify-start">
                         <p className="font-semibold">{s.deviceType}</p>
                         {s.status == "active" && (
                           <Badge className="font-bold text-[0.6rem] bg-green-50 text-green-700 dark:bg-green-900/15 dark:text-green-400 dark:border-green-200/15">
                             Active
                           </Badge>
                         )}
+
+                        {/* {session && session.id == s.id && (
+                          <Badge variant="secondary" className="text-[0.6rem]">
+                            Current
+                          </Badge>
+                        )} */}
                       </div>
 
                       <p className="text-xs text-muted-foreground">
