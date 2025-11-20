@@ -9,7 +9,11 @@
     "--- User ---",
     "...(user)",
     "--- User Settings ---",
-    "...(user-settings)"
+    "...(user-settings)",
+    "--- Organization ---",
+    "...(organization)",
+    "--- Organization Settings ---",
+    "...(organization-settings)"
   ],
   "defaultOpen": true
 }

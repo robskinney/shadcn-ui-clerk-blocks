@@ -34,7 +34,7 @@ const emailAddFormSchema = z.object({
   isPrimary: z.boolean(),
 });
 
-export type OrganizationCreateFormValues = z.infer<typeof emailAddFormSchema>;
+export type EmailCreateFormValues = z.infer<typeof emailAddFormSchema>;
 
 export function EmailAddForm({
   setEmails,
@@ -53,7 +53,7 @@ export function EmailAddForm({
     },
   });
 
-  async function handleAdd(data: OrganizationCreateFormValues) {
+  async function handleAdd(data: EmailCreateFormValues) {
     if (!user) {
       toast.warning("You must be logged in to use this functionality.");
     } else {
@@ -84,7 +84,7 @@ export function EmailAddForm({
     }
   }
 
-  function onSubmit(data: OrganizationCreateFormValues) {
+  function onSubmit(data: EmailCreateFormValues) {
     handleAdd(data);
   }
 

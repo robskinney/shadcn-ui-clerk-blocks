@@ -7,7 +7,7 @@ export async function updateUserProfile(data: UserProfileUpdateFormValues) {
   const { userId } = await auth();
 
   if (!userId) {
-    throw new Error("Failed to remove email");
+    throw new Error("Failed to update profile.");
   }
 
   const client = await clerkClient();

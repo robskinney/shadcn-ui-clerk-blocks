@@ -1,11 +1,11 @@
 "use server";
 
 import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
-import { OrganizationCreateFormValues } from "./email-add-form";
+import { EmailCreateFormValues } from "./email-add-form";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
-export async function createEmailAddress(data: OrganizationCreateFormValues) {
+export async function createEmailAddress(data: EmailCreateFormValues) {
   const { userId } = await auth();
 
   if (!userId) {

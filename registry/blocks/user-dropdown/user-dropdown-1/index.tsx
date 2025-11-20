@@ -34,11 +34,10 @@ export default function UserDropdown1({
 }: UserDropdown1Props) {
   const { signOut } = useAuth();
 
-  const { user: hookUser, isLoaded } = !propUser
-    ? useUser()
-    : { user: null, isLoaded: true };
+  const { user: hookUser, isLoaded: hookLoaded } = useUser();
 
-  const user = propUser || hookUser;
+  const user = propUser ?? hookUser;
+  const isLoaded = propUser ? true : hookLoaded;
 
   return (
     <DropdownMenu>

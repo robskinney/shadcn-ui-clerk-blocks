@@ -31,17 +31,16 @@ export type UserDropdown2Props = {
   dropdownMenuContentProps?: DropdownMenuContentProps;
 };
 
-export default function UserDropdown2Inner({
+export default function UserDropdown2({
   user: propUser,
   dropdownMenuContentProps = { side: "bottom", align: "end", sideOffset: 8 },
 }: UserDropdown2Props) {
   const { signOut } = useAuth();
 
-  const { user: hookUser, isLoaded } = !propUser
-    ? useUser()
-    : { user: null, isLoaded: true };
+  const { user: hookUser, isLoaded: hookLoaded } = useUser();
 
-  const user = propUser || hookUser;
+  const user = propUser ?? hookUser;
+  const isLoaded = propUser ? true : hookLoaded;
 
   return (
     <DropdownMenu>

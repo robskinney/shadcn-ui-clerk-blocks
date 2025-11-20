@@ -5,7 +5,7 @@ import { Upload } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import imageCompression from "browser-image-compression";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useAuth, useOrganization } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import z from "zod";
 import { Controller, useForm } from "react-hook-form";
@@ -18,23 +18,18 @@ import {
   FieldError,
   FieldLabel,
 } from "@/components/ui/field";
-import { updateUserProfile } from "./actions";
 import { Spinner } from "@/components/ui/spinner";
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
-import { Label } from "@/components/ui/label";
-import { UserResource } from "@clerk/types";
-import { User } from "@clerk/backend";
+import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
+import { Organization } from "@clerk/backend";
 import { Skeleton } from "@/components/ui/skeleton";
+import { updateOrganization } from "./actions";
+import { OrganizationResource } from "@clerk/types";
 
-export type ProfileForm1Props = {
+export type OrganizationForm1Props = {
   /**
-   * A Clerk [User](https://clerk.com/docs/reference/javascript/user) object retrieved from either the frontend or backend SDK.
+   * A Clerk [Organization](https://clerk.com/docs/reference/javascript/organization) object retrieved from either the frontend or backend SDK.
    **/
-  user?: Partial<UserResource> | Partial<User>;
+  organization?: Partial<OrganizationResource> | Partial<Organization>;
 };
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 1MB
@@ -45,59 +40,77 @@ const ACCEPTED_IMAGE_TYPES = [
   "image/webp",
 ];
 
-const userProfileUpdateFormSchema = z.object({
+const organizationUpdateFormSchema = z.object({
+  id: z.string(),
   picture: z
     .file()
     .min(1)
     .max(MAX_FILE_SIZE, "Image must be less than 8MB.")
     .mime(ACCEPTED_IMAGE_TYPES, "Image must be .jpeg, .jpg, .png, or .webp.")
     .optional(),
-  username: z.string().optional(),
-  firstName: z.string(),
-  lastName: z.string(),
+  name: z.string(),
+  slug: z.string(),
 });
 
-export type UserProfileUpdateFormValues = z.infer<
-  typeof userProfileUpdateFormSchema
+export type OrganizationUpdateFormValues = z.infer<
+  typeof organizationUpdateFormSchema
 >;
 
-export default function ProfileForm1({ user: propUser }: ProfileForm1Props) {
+export default function OrganizationForm1({
+  organization: propOrganization,
+}: OrganizationForm1Props) {
   const { isSignedIn } = useAuth();
 
-  const { user: hookUser, isLoaded: hookLoaded } = useUser();
+  const { organization: hookOrganization, isLoaded: hookLoaded } =
+    useOrganization();
 
-  const user = propUser ?? hookUser;
-  const isLoaded = propUser ? true : hookLoaded;
+  const organization = propOrganization ?? hookOrganization;
+  const isLoaded = propOrganization ? true : hookLoaded;
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [loading, setLoading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(
-    user?.imageUrl ?? null
+    organization?.imageUrl ?? null
   );
 
-  const form = useForm<z.infer<typeof userProfileUpdateFormSchema>>({
-    resolver: zodResolver(userProfileUpdateFormSchema),
+  const form = useForm<z.infer<typeof organizationUpdateFormSchema>>({
+    resolver: zodResolver(organizationUpdateFormSchema),
     defaultValues: {
+      id: organization?.id,
       picture: undefined,
-      username: user?.username ?? "",
-      firstName: user?.firstName ?? "",
-      lastName: user?.lastName ?? "",
+      name: organization?.name ?? "",
+      slug: organization?.slug ?? "",
     },
   });
 
-  useEffect(() => {
-    if (isLoaded && user) {
-      form.reset({
-        picture: undefined,
-        username: user.username ?? "",
-        firstName: user.firstName ?? "",
-        lastName: user.lastName ?? "",
-      });
-      setPreviewUrl(user.imageUrl ?? null);
-    }
-  }, [isLoaded, user, form]);
+  const enteredName = form.watch("name");
 
-  async function handleUpdate(data: UserProfileUpdateFormValues) {
+  useEffect(() => {
+    form.setValue(
+      "name",
+      enteredName
+        .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+        .replace(/[:\-\.]{2,}/g, (match) => match[0]) // Replace multiple ":" or "-" or "." with a single instance
+    );
+    form.setValue(
+      "slug",
+      enteredName.toLowerCase().replace(/[:.']/g, "").replace(/\s+/g, "-")
+    );
+  }, [form, enteredName]);
+
+  useEffect(() => {
+    if (isLoaded && organization) {
+      form.reset({
+        id: organization?.id,
+        picture: undefined,
+        name: organization?.name ?? "",
+        slug: organization?.slug ?? "",
+      });
+      setPreviewUrl(organization.imageUrl ?? null);
+    }
+  }, [isLoaded, organization, form]);
+
+  async function handleUpdate(data: OrganizationUpdateFormValues) {
     if (!isSignedIn) {
       toast.warning("You must be logged in to use this functionality.");
     } else {
@@ -115,18 +128,18 @@ export default function ProfileForm1({ user: propUser }: ProfileForm1Props) {
           processedData.picture = compressedFile;
         }
 
-        await updateUserProfile(processedData);
-        toast.success("Profile updated successfully.");
+        await updateOrganization(processedData);
+        toast.success("Organization updated successfully.");
       } catch (err) {
         console.error(err);
-        toast.error("Failed to update profile.");
+        toast.error("Failed to update organization.");
       } finally {
         setLoading(false);
       }
     }
   }
 
-  function onSubmit(data: UserProfileUpdateFormValues) {
+  function onSubmit(data: OrganizationUpdateFormValues) {
     handleUpdate(data);
   }
 
@@ -134,17 +147,17 @@ export default function ProfileForm1({ user: propUser }: ProfileForm1Props) {
     <Card className="w-full">
       <CardContent className="mx-auto w-full lg:max-w-4/5 xl:max-w-3/4">
         <form
-          id="form-profile-update-1"
+          id="form-organization-update-1"
           className="flex flex-col gap-y-8 px-3 sm:px-5 py-5"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            {isLoaded && user ? (
+            {isLoaded && organization ? (
               <Avatar className="aspect-square size-24 rounded-full bg-slate-400">
                 <AvatarImage
-                  src={previewUrl ?? user?.imageUrl ?? undefined}
+                  src={previewUrl ?? organization?.imageUrl ?? undefined}
                   className="object-cover"
-                  alt="User profile picture"
+                  alt="Organization profile picture"
                 />
                 <AvatarFallback />
               </Avatar>
@@ -202,30 +215,26 @@ export default function ProfileForm1({ user: propUser }: ProfileForm1Props) {
 
           <div className="flex flex-col gap-3">
             <Controller
-              name="username"
+              name="name"
               control={form.control}
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid} className="gap-1">
-                  <FieldLabel htmlFor="form-profile-update-1-username">
-                    Username
+                  <FieldLabel htmlFor="form-organization-update-1-name">
+                    Name
                   </FieldLabel>
                   <InputGroup>
                     {isLoaded ? (
                       <InputGroupInput
                         {...field}
-                        id="form-profile-update-1-username"
+                        id="form-organization-update-1-name"
                         aria-invalid={fieldState.invalid}
-                        placeholder="robskinney"
-                        autoComplete="username"
+                        placeholder="Acme, Inc."
+                        autoComplete="organization"
                         disabled={!isLoaded}
                       />
                     ) : (
                       <Skeleton className="w-20 h-5 ml-1.5" />
                     )}
-
-                    <InputGroupAddon>
-                      <Label htmlFor="email">@</Label>
-                    </InputGroupAddon>
                   </InputGroup>
                   {fieldState.invalid && (
                     <FieldError errors={[fieldState.error]} />
@@ -233,65 +242,33 @@ export default function ProfileForm1({ user: propUser }: ProfileForm1Props) {
                 </Field>
               )}
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <Controller
-                name="firstName"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="gap-1">
-                    <FieldLabel htmlFor="form-profile-update-1-firstName">
-                      First Name
-                    </FieldLabel>
-                    <InputGroup>
-                      {isLoaded ? (
-                        <InputGroupInput
-                          {...field}
-                          id="form-profile-update-1-firstName"
-                          aria-invalid={fieldState.invalid}
-                          placeholder={isLoaded ? "Robert" : ""}
-                          autoComplete="given-name"
-                          disabled={!isLoaded}
-                        />
-                      ) : (
-                        <Skeleton className="w-16 h-5 ml-1.5" />
-                      )}
-                    </InputGroup>
-
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
+            <Controller
+              name="slug"
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid} className="gap-1">
+                  <FieldLabel htmlFor="form-organization-update-1-name">
+                    Slug
+                  </FieldLabel>
+                  <InputGroup>
+                    {isLoaded ? (
+                      <InputGroupInput
+                        {...field}
+                        id="form-organization-update-1-slug"
+                        aria-invalid={fieldState.invalid}
+                        placeholder="acme-inc"
+                        disabled
+                      />
+                    ) : (
+                      <Skeleton className="w-20 h-5 ml-1.5" />
                     )}
-                  </Field>
-                )}
-              />
-              <Controller
-                name="lastName"
-                control={form.control}
-                render={({ field, fieldState }) => (
-                  <Field data-invalid={fieldState.invalid} className="gap-1">
-                    <FieldLabel htmlFor="form-profile-update-1-lastName">
-                      Last Name
-                    </FieldLabel>
-                    <InputGroup>
-                      {isLoaded ? (
-                        <InputGroupInput
-                          {...field}
-                          id="form-profile-update-1-lastName"
-                          aria-invalid={fieldState.invalid}
-                          placeholder={isLoaded ? "Kinney" : ""}
-                          autoComplete="family-name"
-                          disabled={!isLoaded}
-                        />
-                      ) : (
-                        <Skeleton className="w-20 h-5 ml-1.5" />
-                      )}
-                    </InputGroup>
-                    {fieldState.invalid && (
-                      <FieldError errors={[fieldState.error]} />
-                    )}
-                  </Field>
-                )}
-              />
-            </div>
+                  </InputGroup>
+                  {fieldState.invalid && (
+                    <FieldError errors={[fieldState.error]} />
+                  )}
+                </Field>
+              )}
+            />
           </div>
 
           <Button type="submit" disabled={loading}>

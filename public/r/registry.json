@@ -105,6 +105,10 @@
           "path": "registry/blocks/profile-form/profile-form-1/index.tsx",
           "target": "components/profile-form-1/index.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/format-user.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -460,6 +464,10 @@
           "path": "registry/blocks/user-dropdown/user-dropdown-1/index.tsx",
           "target": "components/user-dropdown-1.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/format-user.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -475,6 +483,84 @@
           "path": "registry/blocks/user-dropdown/user-dropdown-2/index.tsx",
           "target": "components/user-dropdown-2.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/format-user.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "organization-switcher-1",
+      "type": "registry:block",
+      "title": "Organization Switcher - 1",
+      "description": "A simple organization switcher component.",
+      "dependencies": ["@clerk/nextjs", "@clerk/types", "lucide-react"],
+      "registryDependencies": [
+        "avatar",
+        "dropdown-menu",
+        "skeleton",
+        "button",
+        "field",
+        "dialog"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/organization-switcher/organization-switcher-1/actions.ts",
+          "target": "components/organization-switcher-1/actions.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/organization-switcher/organization-switcher-1/index.tsx",
+          "target": "components/organization-switcher-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/blocks/organization-switcher/organization-switcher-1/organization-add-form.tsx",
+          "target": "components/organization-switcher-1/organization-add-form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "organization-form-1",
+      "type": "registry:block",
+      "title": "Organization Form - 1",
+      "description": "A simple organization form.",
+      "registryDependencies": [
+        "card",
+        "input",
+        "avatar",
+        "skeleton",
+        "button",
+        "sonner",
+        "field",
+        "spinner",
+        "input-group",
+        "label"
+      ],
+      "dependencies": [
+        "zod",
+        "react-hook-form",
+        "@hookform/resolvers",
+        "browser-image-compression",
+        "@clerk/types",
+        "@clerk/nextjs"
+      ],
+      "files": [
+        {
+          "path": "registry/blocks/organization-form/organization-form-1/actions.ts",
+          "target": "components/organization-form-1/actions.ts",
+          "type": "registry:file"
+        },
+        {
+          "path": "registry/blocks/organization-form/organization-form-1/index.tsx",
+          "target": "components/organization-form-1/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/lib/format-organization.ts",
+          "type": "registry:lib"
         }
       ]
     }

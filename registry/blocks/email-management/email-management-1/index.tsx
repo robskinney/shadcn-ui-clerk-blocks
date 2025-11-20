@@ -38,11 +38,10 @@ export type EmailManagement1Props = {
 export default function EmailManagement1({
   user: propUser,
 }: EmailManagement1Props) {
-  const { user: hookUser, isLoaded } = !propUser
-    ? useUser()
-    : { user: null, isLoaded: true };
+  const { user: hookUser, isLoaded: hookLoaded } = useUser();
 
-  const user = propUser || hookUser;
+  const user = propUser ?? hookUser;
+  const isLoaded = propUser ? true : hookLoaded;
 
   const [emails, setEmails] = useState<FormattedEmailAddress[]>([]);
 

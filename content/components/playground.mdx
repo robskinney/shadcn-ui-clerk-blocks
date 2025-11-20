@@ -39,7 +39,6 @@ import SignIn2 from "@/registry/blocks/sign-in/sign-in-2";
       <SignIn2
         enabledOAuthStrategies={["oauth_google", "oauth_microsoft"]}
         signUpUrl="/components/sign-up-1"
-        autoConfig
         exampleMode
       />
     </SignedIn>
@@ -51,7 +50,6 @@ import SignIn2 from "@/registry/blocks/sign-in/sign-in-2";
           "oauth_github",
         ]}
         signUpUrl="/components/sign-up-1"
-        autoConfig
       />
     </SignedOut>
   </ComponentContainer>
@@ -172,5 +170,17 @@ import OfflineSocialAccounts1 from "@/components/offline/offline-social-accounts
         redirectUrl="/social-accounts-1"
       />
     </SignedOut>
+  </ComponentContainer>
+</div>
+
+## Organization
+
+### organization-switcher-1
+
+import OrganizationSwitcher1 from "@/registry/blocks/organization-switcher/organization-switcher-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <OrganizationSwitcher1 />
   </ComponentContainer>
 </div>

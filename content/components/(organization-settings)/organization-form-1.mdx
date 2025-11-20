@@ -1,0 +1,89 @@
+---
+title: organization-form-1
+description: An editable organization form.
+---
+
+import OrganizationForm1 from "@/registry/blocks/organization-form/organization-form-1";
+
+<div className="not-prose">
+  <ComponentContainer>
+    <SignedIn>
+      <OrganizationForm1 />
+    </SignedIn>
+    <SignedOut>
+      <OrganizationForm1 />
+    </SignedOut>
+  </ComponentContainer>
+</div>
+
+## Installation
+
+```npm
+npx shadcn@latest add https://shadcn-ui-clerk-blocks.vercel.app/r/organization-form-1.json
+```
+
+## Usage
+
+### Basic
+
+```tsx
+import OrganizationForm1 from "@/components/organization-form-1";
+```
+
+```tsx
+<OrganizationForm1 />
+```
+
+### With Manual Fetching
+
+#### Server
+
+```tsx title="page.tsx"
+import OrganizationForm1 from "@/components/organization-form-1";
+import { formatOrganization } from "@/registry/lib/format-organization";
+import { auth, clerkClient } from "@clerk/nextjs/server";
+
+export default async function Page() {
+  const { isAuthenticated, orgId } = await auth();
+
+  const client = await clerkClient();
+
+  if (!isAuthenticated || !orgId) return;
+
+  const organization = await client.organizations.getOrganization({
+    organizationId: orgId,
+  });
+
+  return <OrganizationForm1 organization={formatOrganization(organization)} />;
+}
+```
+
+#### Client
+
+```tsx title="page.tsx"
+"use client";
+
+import OrganizationForm1 from "@/components/organization-form-1";
+import { useOrganization } from "@clerk/nextjs";
+
+import { Spinner } from "@/components/ui/spinner";
+
+export default function Page() {
+  const { organization, isLoaded } = useOrganization();
+
+  if (!isLoaded) {
+    return <Spinner />;
+  }
+
+  if (!organization) return;
+
+  return <OrganizationForm1 organization={organization} />;
+}
+```
+
+## Props
+
+<auto-type-table
+  path="../../../registry/blocks/organization-form/organization-form-1/index.tsx"
+  name="OrganizationForm1Props"
+/>

@@ -43,7 +43,6 @@ export default function SignIn2({
   const pathname = usePathname();
   const { isLoaded } = useAuth();
 
-  // Show loading state when autoConfig is enabled and data is loading
   if (!isLoaded) {
     return <Skeleton className="h-[350px] w-96 rounded-xl" />;
   }
