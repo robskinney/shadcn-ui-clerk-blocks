@@ -1,6 +1,6 @@
 "use client";
 
-import { Upload } from "lucide-react";
+import { Building, Upload } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -152,17 +152,17 @@ export default function OrganizationForm1({
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <div className="flex flex-col sm:flex-row items-center gap-4">
-            {isLoaded && organization ? (
+            {isLoaded && (
               <Avatar className="aspect-square size-24 rounded-full bg-slate-400">
                 <AvatarImage
                   src={previewUrl ?? organization?.imageUrl ?? undefined}
                   className="object-cover"
                   alt="Organization profile picture"
                 />
-                <AvatarFallback />
+                <AvatarFallback>
+                  <Building />
+                </AvatarFallback>
               </Avatar>
-            ) : (
-              <Skeleton className={`size-24 rounded-full`} />
             )}
 
             <div>
