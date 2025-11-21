@@ -1,19 +1,121 @@
-# shadcn-ui-clerk-blocks
+## Introduction
 
-You can use the `shadcn` CLI to pull blocks from our component registry.
+These components can be modified, flexed, and used however works best for your use case. I will try to highlight some example use cases, but the important thing to note
+is that the code you copy and paste is yours.
 
-> [!IMPORTANT]  
-> This registry currently supports [Next.js](https://nextjs.org/) projects that use [shadcn/ui](https://ui.shadcn.com/) and [Clerk](https://clerk.com/) for authentication.
+## Compatibility
 
-## Getting Started
+This registry only officially supports [Next.js](https://nextjs.org/) projects today, but there are plans to support additional frameworks, starting with Vite / TanStack Start.
 
-Please be sure to have Clerk installed in your app by adding a `<ClerkProvider>` to your Root Layout. Additionally, a `.env` file must be present with a `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`, which can be found on the Clerk dashboard. Full Clerk quickstart documentation is available [here](https://clerk.com/docs/nextjs/getting-started/quickstart).
+| Framework       | Version(s) | Support    |
+| --------------- | ---------- | ---------- |
+| Next.js         | 14, 15, 16 | ✅ Full    |
+| Tanstack Router | N/A        | ⚠️ Partial |
 
-Once this setup has been completed, you are ready to begin copying components. Copy the relevant commands for the package manager used in your project and run them within the terminal of your project's folder.
+## Prerequisites
 
-## Additional
+### Configure Clerk
 
-- This project was built using Next.js 16 on the App Router, but should support Next.js 15 apps. I plan on providing additional variants to support other frameworks, starting with Vite / TanStack Start.
-- Data is fetched and cache'd using built-in libraries. I plan on providing additional examples for using React Query at a later date.
-- If necessary, each component is split up into sub-components to allow for easier editing and understanding of their structure.
-- Currently pnpm, npm, yarn, and bun are documented package managers on the website. Please submit a request if you'd like me to add any additional managers.
+Full Clerk quickstart documentation can be found available [here.](https://clerk.com/docs/nextjs/getting-started/quickstart)
+
+1. Install Clerk
+
+```npm
+npm install @clerk/nextjs
+```
+
+2. Hook up Proxy (Middleware on Next.js 15 and below)
+
+```tsx title="proxy.ts"
+import { clerkMiddleware } from "@clerk/nextjs/server"; // [!code highlight]
+
+export const config = {
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    // Always run for API routes
+    "/(api|trpc)(.*)",
+  ],
+};
+
+export default clerkMiddleware(); // [!code highlight]
+```
+
+3. Add a `ClerkProvider` to the Root Layout of your project
+
+```tsx title="layout.tsx"
+import { ClerkProvider } from "@clerk/nextjs"; // [!code highlight]
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        // [!code highlight]
+        <ClerkProvider>
+          <main>{children}</main>
+          // [!code highlight]
+        </ClerkProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+4. A `.env` or `.env.local` file must be present with your `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`, which can be found on the Clerk dashboard.
+
+```ts title=".env"
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY = "pk_test_xxx";
+CLERK_SECRET_KEY = "sk_test_xxx";
+```
+
+### Configure shadcn/ui
+
+1. Install `shadcn/ui`
+
+```npm
+npx shadcn@latest init
+```
+
+2. Download `sonner` component
+
+```npm
+npx shadcn@latest add sonner
+```
+
+3. Add `<Toaster />` to your Root Layout
+
+```tsx title="layout.tsx"
+import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner"; // [!code highlight]
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <ClerkProvider>
+          <main>{children}</main>
+          // [!code highlight]
+          <Toaster />
+        </ClerkProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+Once this setup has been completed, you are ready to begin copying components.
+
+## Usage
+
+After finding a component you'd like to use, copy the installation command relevant to your project's package manager (npm, pnpmn, yarn, or bun)
+and execute it in the terminal. The shadcn registry will automatically install dependencies and relevant files into your project.
+
+Once a component has been installed, refer to the usage guide on it to see examples of how it can be used.
